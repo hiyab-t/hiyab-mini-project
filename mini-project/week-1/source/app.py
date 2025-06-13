@@ -1,58 +1,52 @@
 #products name
 
 
-#homemade_lunch = ["Chicken Burger", "Mushroom Risotto", "Classic Beef Bacon Sandwich"]
-#drinks = ["Hot chocolate", "Mocha", "Americano"]
-#add_ons = ["Syrup", "Cream", "Chocolate"]
-
 products = ["Hot chocolate", "Mocha", "Americano"]
 
-
-#print("Products")
-#for product_list in products:
-#    print(f"- {product_list}")
-#def product_list():
-#    print(products)
-#
-#    product_list()
 #print main menu options
 #get user input for main menu option
+#function main menu option(may be redundant. revise)
 def main_menu_options():
     print("Main menu options\n0 - Exit the app.\n1 - Product menu options.")
 
 main_menu_options()
 
+#function to get a product list with their index 
+def product_index_list():
+    print (list(enumerate(products)))
+
+#get user input for main menu option
 user_input_menu = int(input())
 
-if user_input_menu > 0 :
+#main menu options
+if user_input_menu == 1 :
     print("Product menu options\n0 - Return to main menu\n1 - View products.\n2 - Create a new product.\n3 - Update an existing product.\n4 - Delete a product.\n")
-else:
+elif user_input_menu > 1:
+    print("Invalid input.")
+elif user_input_menu == 0:
     quit()
 
 #get user input for product options
-
 user_input_options = int(input())
 
-if user_input_options < 1:
+#product options
+#used function from above to print products with index
+#get user input index and product name to update and delete
+if user_input_options == 0:
     print(main_menu_options())
 elif user_input_options == 1:
     print(products)
-else:
-    print("Wait for an update.")
+elif user_input_options == 2:
+    print(products.append(input("What product would you like to add? ")))
+elif user_input_options == 3:
+    print(product_index_list())
+    user_input_index = int(input("Type in the number of the product you would like to update:"))
+    user_input_product_name = input("What product would you like to add?\n")
+    products[user_input_index] = user_input_product_name
+elif user_input_options == 4:
+    print(product_index_list())
+    user_input_index_pop = int(input("Please input the number of the product you want to delete: "))
+    products.pop(user_input_index_pop)
 
-
-#def product_list():
-#    print(f"Products {homemade_lunch}")
-
-    
-
-#def my_function():
-#    print(homemade_lunch, 
-#        drinks,
-#        add_ons)
-#my_function()
-#
-#for products in (my_function):
-#    print(my_function)
-#goals to remember
-#user ability to create, update, delete a product
+#check results
+print(products)
