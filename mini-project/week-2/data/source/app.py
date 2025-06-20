@@ -1,7 +1,7 @@
 #product list
 products = ["Hot chocolate", "Mocha", "Americano"]
 
-#orders 
+#orders (might be unnecessary)
 order = {
     'customer_name':'',
     'customer_address': '',
@@ -28,10 +28,12 @@ def product_index_list():
     print (list(enumerate(products)))
 
 #function to get user inputs
-#def user_input_product_options():
+#def user_input_product_opt():
 #    return int(input())
 
-#while loop
+#while true loop
+
+#try-except for str and '' entery
 
 
 #get user input for main menu option
@@ -50,7 +52,6 @@ while user_input_menu > 2:
                 "2 - Create a new product.\n" \
                 "3 - Update an existing product.\n" \
                 "4 - Delete a product.")
-            user_input_product_options = int(input())
     elif user_input_menu == 2:
             print("Orders menu\n" \
                 "0 - Return to main menu.\n" \
@@ -59,42 +60,39 @@ while user_input_menu > 2:
                 "3 - Update order status\n" \
                 "4 - Update existing order\n" \
                 "5 - Delete order")
-            user_input_orders_menu = int(input())
-#user_input_orders_menu = int(input())
-        
-#else: break
-    #print('Oop! Invalid input. Please enter the appropriate number according to the given choices.')
-    
+
 
 #get user input for product options
-
+user_input_product_opt = int(input())
 
 #list of product options
 #used function from above to print products with index
 #get user input index and product name to update and delete
 
-while user_input_product_options > 4:
+while user_input_product_opt > 4:
     print('Invalid input. Please enter the appropriate number again.')
-    user_input_product_options = int(input())
-    if user_input_product_options == 0:
+    user_input_product_opt = int(input())
+    if user_input_product_opt == 0:
         print(main_menu_options())
-    elif user_input_product_options == 1:
+    elif user_input_product_opt == 1:
         print(products) 
-    elif user_input_product_options == 2:
+    elif user_input_product_opt == 2:
         print(products.append(input("What product would you like to add? ")))
-    elif user_input_product_options == 3:
+    elif user_input_product_opt == 3:
         print(product_index_list())
         user_input_index = (input("Type in the number of the product you would like to update:"))
         user_input_product_name = input("What product would you like to add?\n")
         products[user_input_index] = user_input_product_name.title()
-    elif user_input_product_options == 4:
+    elif user_input_product_opt == 4:
         print(product_index_list())
         user_input_index_pop = (input("Please input the number of the product you want to delete: "))
         products.pop(user_input_index_pop)
 
+#get user input for order menu options
+user_input_orders_menu = int(input())
 
 #order menu
-#if user_input_order_menu  
+#if user_input_order(revise variable name later) 
 while user_input_orders_menu > 3:
     print("Invalid input. Please enter the appropriate number again.")
     user_input_orders_menu = int(input())
