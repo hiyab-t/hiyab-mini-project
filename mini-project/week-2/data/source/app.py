@@ -7,11 +7,11 @@ products = ['Mocha', 'Hot chocolate']
 orders_list = [{}]
 
 #print main menu options and get user input
-def user_input_main_menu():
-    return input("Main menu options\n" \
+def main_menu_opt():
+    print("Main menu options\n" \
     "0 - Exit the app.\n" \
     "1 - Product menu options.\n" \
-    "2 - Orders menu.")
+    "2 - Orders menu.\n")
 
 #func to get products list with index
 def product_index_list():
@@ -20,17 +20,18 @@ def product_index_list():
 #main menu opt
 
 while True:
-        user_input_main_menu()
-        if user_input_main_menu() == '0':
+        main_menu_opt()
+        main_menu_input = input()
+        if main_menu_input == '0':
             quit("Exitting the app. Don't be a stanger!")
-        elif user_input_main_menu() == '1':
+        elif main_menu_input == '1':
             user_input_product_opt = input(
                 "Product menu options\n"
                 "0 - Return to main menu\n" \
                 "1 - View products.\n" \
                 "2 - Create a new product.\n" \
                 "3 - Update an existing product.\n" \
-                "4 - Delete a product.")
+                "4 - Delete a product.\n")
             if user_input_product_opt == '0':
                 continue
             elif user_input_product_opt == '1':
@@ -48,7 +49,7 @@ while True:
                 products.pop(user_input_index_pop)
                 user_input_product_opt = (input())
                 
-        elif user_input_main_menu() == '2':
+        elif main_menu_input == '2':
             user_input_orders_menu = input(
                 "Orders menu\n" \
                 "0 - Return to main menu.\n" \
@@ -56,31 +57,31 @@ while True:
                 "2 - Enter customer information and get order status\n" \
                 "3 - Update order status\n" \
                 "4 - Update existing order\n" \
-                "5 - Delete order")
+                "5 - Delete order\n")
             if user_input_orders_menu == '0':
                 continue
             elif user_input_orders_menu == '1':
                 print(orders_list)
-        elif user_input_orders_menu == 2:
-            user_input_name = input("Enter customer full name: ")
-            user_input_address = input("Enter customer address: ")
-            user_input_number = int(input("Enter customer phone number: "))
-            order_status = 'PREPARING'
-            order = {
-                'customer name': user_input_name,
-                'customer address': user_input_address,
-                'Customer phone number': user_input_number,
-                'Status': order_status
-            }
-            orders_list.append(order)
-            print(order)
-        elif user_input_orders_menu == 3:
-            for index, orders in enumerate(orders_list):
-                print(f'{index}: {orders}')
-            user_input_customer_order_num = int(input("Which customer's order would you like to update? "))
-    
-            for index_orders, order_keys in enumerate(order):
-                print(f'{index_orders}: {order_keys}')
+            elif user_input_orders_menu == '2':
+                user_input_name = input("Enter customer full name: ")
+                user_input_address = input("Enter customer address: ")
+                user_input_number = int(input("Enter customer phone number: "))
+                order_status = 'PREPARING'
+                order = {
+                    'customer name': user_input_name,
+                    'customer address': user_input_address,
+                    'Customer phone number': user_input_number,
+                    'Status': order_status
+                }
+                orders_list.append(order)
+                print(order)
+            elif user_input_orders_menu == 3:
+                for index, orders in enumerate(orders_list):
+                    print(f'{index}: {orders}')
+                user_input_customer_order_num = int(input("Which customer's order would you like to update? "))
+        
+                for index_orders, order_keys in enumerate(order):
+                    print(f'{index_orders}: {order_keys}')
         else:
             print("Invalid input. Please enter the appropriate number.\n")
 
