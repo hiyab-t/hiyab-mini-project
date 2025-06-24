@@ -98,11 +98,16 @@ while True:
                 user_input_name = input("Enter customer full name: ")
                 user_input_address = input("Enter customer address: ")
                 user_input_number = int(input("Enter customer phone number: "))
+                while True:
+                    print('Please ensure to enter a valid phone number and no blank spaces.')
+                    user_input_number = input('Enter customer phone number:\n')
+                    if user_input_number.isdigit() and len(user_input_number) == 11 or len(user_input_number) == 10:
+                        break
                 order_status = 'PREPARING'
                 order = {
-                    'customer name': user_input_name,
-                    'customer address': user_input_address,
-                    'Customer phone number': user_input_number,
+                    'customer_name': user_input_name,
+                    'customer_address': user_input_address,
+                    'Customer_phone number': user_input_number,
                     'Status': order_status
                 }
                 orders_list.append(order)
@@ -115,17 +120,36 @@ while True:
                     orders_index = (f'{index}: {orders}')
                     print(orders_index)
 
-                input_order_num = int(input("Which order's status would you like to update?\n")) #TRY EXCEPT MIGHT BE NECESSARY bc of "int"
+                input_order_status_num = int(input("Which order's status would you like to update?\n")) #TRY EXCEPT MIGHT BE NECESSARY bc of "int"
                 
-                chosen_order = orders_list[input_order_num]
+                chosen_order = orders_list[input_order_status_num]
                 
                 for index_status, orders_to_list in enumerate(order_status_list):
                     print(f'{index_status}: {orders_to_list}')
                 input_status_index = int(input('What would you like to update the order status to?\n')) #try-except for same as #118
                 
-                
                 orders.update({'status': order_status_list[input_status_index]})
                 print(f'Update successful!\n{chosen_order}')
+        elif input_orders_menu == '4':
+            print('Orders list')
+
+            for index, orders in enumerate(orders_list):
+                orders_index = (f'{index}: {orders}')
+                print(orders_index)
+
+            input_order_num = int(input("Which order would you like to update?\n"))
+
+            input_update_name = input("Enter updated customer name:\n")
+            input_update_address = input('Enter updated customer address:\n')
+            input_update_phone = input('Enter updated customer phone number:\n')
+            while True:
+                    print('Please ensure to enter a valid phone number and no blank spaces.')
+                    user_input_number = input('Enter customer phone number:\n')
+                    if user_input_number.isdigit() and len(user_input_number) == 11 or len(user_input_number) == 10:
+                        break
+            
+            orders.update({'customer_name': order})
+
         else:
             print("Invalid input. Please enter a valid number.\n")
 
