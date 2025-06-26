@@ -1,9 +1,7 @@
 #product list
-
 products = ['Mocha', 'Hot chocolate']
 
 #order list
-
 orders_list = [{
     "customer_name": "John Jones",
     "customer_address": "Main Street, LONDON",
@@ -18,11 +16,9 @@ orders_list = [{
     }]
 
 #order status list
-
 order_status_list = ['preparing', 'out-for-delivery', 'delivered']
 
-#print main menu options
-
+#print main menu 
 def main_menu_opt():
     print("Main menu options\n" \
     "0 - Exit App.\n" \
@@ -30,22 +26,19 @@ def main_menu_opt():
     "2 - Orders Menu.\n")
 
 #func to get products list with index
-
 def product_index_list():
     print('Products list')
     for index_product, product in enumerate(products):
         print(f'{index_product}: {product}')
 
 #func to print orders list with index
-
 def orders_index_list():
     print('Orders list')
     for index, orders in enumerate(orders_list):
         print(f'{index}: {orders}')
 
 
-#main menu opt
-
+#main menu 
 while True:
         main_menu_opt()
         main_menu_input = input()
@@ -53,8 +46,7 @@ while True:
         if main_menu_input == '0':
             quit("Exitting the app. Don't be a stanger!")
 
-        #get input for product options
-
+        #get input for product menu
         elif main_menu_input == '1':
             user_input_product_opt = input(
                 "Product Menu\n"
@@ -64,30 +56,29 @@ while True:
                 "3 - Update Existing Product.\n" \
                 "4 - Delete Product.\n")
 
-            #product options
-
+            #product menu
             if user_input_product_opt == '0':
                 continue
+        
+            elif user_input_product_opt == '1':
+                    product_index_list()
+    
+            elif user_input_product_opt == '2':
+                print(products.append(input("What would you like to add?\n")))
 
-            while True:
-                if user_input_product_opt == '1':
-                    product_index_list()
-    
-                elif user_input_product_opt == '2':
-                    print(products.append(input("What would you like to add?\n")))
-    
-                elif user_input_product_opt == '3':
-                    product_index_list()
-                    user_input_index = input("Enter the number of the product you would like to update:\n")
-                    user_input_product_name = input("What product would you like to add?\n")
-                    products[int(user_input_index)] = user_input_product_name.title()
-    
-                elif user_input_product_opt == '4':
-                    print(product_index_list())
-                    user_input_index_pop = input("Please enter the number of the product you want to delete:\n")
-                    products.pop(int(user_input_index_pop))
-                    user_input_product_opt = (input())
-                
+            elif user_input_product_opt == '3':
+                product_index_list()
+                user_input_index = input("Enter the number of the product you would like to update:\n")
+                user_input_product_name = input("What product would you like to add?\n")
+                products[int(user_input_index)] = user_input_product_name.title()
+
+            elif user_input_product_opt == '4':
+                print(product_index_list())
+                user_input_index_pop = input("Please enter the number of the product you want to delete:\n")
+                products.pop(int(user_input_index_pop))
+                user_input_product_opt = (input())
+
+        #orders menu
         elif main_menu_input == '2':
             input_orders_menu = input(
                 "Orders menu\n" \
@@ -104,6 +95,7 @@ while True:
             elif input_orders_menu == '1':
                 orders_index_list()
 
+            #get user input to update existing order
             elif input_orders_menu == '2':
                 user_input_name = input("Enter customer full name: ")
                 user_input_address = input("Enter customer address: ")
@@ -123,6 +115,7 @@ while True:
                 orders_list.append(order)
                 print(order)
 
+            #printed order status list with index
             elif input_orders_menu == '3':
                 orders_index_list()
 
@@ -137,6 +130,8 @@ while True:
                 
                 chosen_order.update({'status': order_status_list[int(input_status_index)]})
                 print(f'Order status update successful!\n{chosen_order}')
+            
+            #get user input to update order
             elif input_orders_menu == '4':
                 orders_index_list()
     
@@ -148,6 +143,8 @@ while True:
                 input_update_address = input('Enter updated customer address:\n')
                 input_update_phone = input('Enter updated customer phone number:\n')
                 input_update_phone.replace(' ', '')
+
+                #utilized while loop to handle empty input and other requirements for customer number
                 while True:
                         if input_update_phone == '' or input_update_phone.isdigit() and len(input_update_phone) == 11 or len(input_update_phone) == 10:
                             break
