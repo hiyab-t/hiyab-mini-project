@@ -83,7 +83,7 @@ while True:
             input_orders_menu = input(
                 "Orders menu\n" \
                 "0 - Return to main menu.\n" \
-                "1 - Print Orders Dictionary.\n" \
+                "1 - Orders list.\n" \
                 "2 - Create New Order.\n" \
                 "3 - Update Existing Order Status.\n" \
                 "4 - Update Existing Order.\n" \
@@ -130,7 +130,13 @@ while True:
                 
                 chosen_order.update({'status': order_status_list[int(input_status_index)]})
                 print(f'Order status update successful!\n{chosen_order}')
-            
+
+                try:
+                    input_order_status_num = input()
+                except IndexError: 
+                    print('Invalid input. Please enter a valid number.')
+                else:
+                    print(f'{input_order_status_num} accepted.')
             #get user input to update order
             elif input_orders_menu == '4':
                 orders_index_list()
@@ -152,14 +158,13 @@ while True:
                             print('Please ensure to enter a valid phone number.')
                             input_update_phone = input('Enter updated customer phone number:\n')
                         
-                
                 if input_update_name or input_update_address or input_update_phone == '':
                     print(f'No update was conducted. Order information will remain the same.\n {chosen_order_property_update}')
                     continue
                 else:
                     chosen_order_property_update.update({'customer_name': input_update_name, 
-                                    'customer_address': input_update_address,
-                                    'customer_phone': input_update_phone})
+                                                        'customer_address': input_update_address,
+                                                        'customer_phone': input_update_phone})
                     print(f'Order properties update successful!\n {chosen_order_property_update}')
             elif input_orders_menu == '5':
                 orders_index_list()
