@@ -144,7 +144,7 @@ if __name__ == "__main__":
                         print('Invalid input. Please enter a valid number.')
                     else:
                         print(f'{input_order_status_num} accepted.')
-                        
+
                 #get user input to update order
                 elif input_orders_menu == '4':
                     orders_index_list()

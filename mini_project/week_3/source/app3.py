@@ -1,6 +1,4 @@
 from week_2.source import app2
-import os
-
 
 
 products = ["Falafel burgers", "Reuben sandwich", 'Chopped salad', "Pasta House salad", 
