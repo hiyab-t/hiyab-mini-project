@@ -1,21 +1,13 @@
 products list
 
-Lunch
-
-1 - Falafel burgers
-2 - Reuben sandwich
-3 - Chopped salad
-4 - Pasta House salad
-5 - Special spicy chicken & avocado wraps
-
-Drinks
-
-1 - Hot chocolate
-2 - Mocha
-3 - Coffee
-4 - Americano
-5 - Flat white
-6 - Cappuccino
-
-
+Falafel burgers
+Reuben sandwich
+Chopped salad
+Pasta House salad
+Special spicy chicken & avocado wraHot chocolate
+Mocha
+Coffee
+Americano
+Flat white
+Cappuccino
 
