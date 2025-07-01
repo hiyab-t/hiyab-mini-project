@@ -1,0 +1,12 @@
+orders_list = [{
+        "customer_name": "John Jones",
+        "customer_address": "Main Street, LONDON",
+        "customer_phone": "07987654321",
+        "status": "Preparing"
+        },
+        {
+        "customer_name": "Hiyab Tewelde",
+        "customer_address": "Antrim road, Belfast",
+        "customer_phone": "07404313229",
+        "status": "Delivered"
+        }]

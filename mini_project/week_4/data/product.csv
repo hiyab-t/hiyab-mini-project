@@ -1,0 +1,8 @@
+products = [{
+        'name': 'Falafel burgers',
+        'price': 3.65
+        },
+        {
+        'name': 'Reuben sandwich',
+        'price': 4
+        }]
