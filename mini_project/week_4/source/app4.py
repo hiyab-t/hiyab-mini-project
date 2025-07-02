@@ -11,7 +11,7 @@ products = [{
         'price': 4
         }]
 
-courier = [{
+couriers = [{
         'name':'Uber Eats',
         'phone':'0789887889'
         },
@@ -71,5 +71,35 @@ except FileNotFoundError as whoops:
 
 app2.main_menu_opt()
 
+main_menu_input = input()
 
+while True:
+    if main_menu_input == '0':
+
+        try: 
+            with open('week_4/data/products.csv', mode='w') as products_file:
+                products_keys = ['name', 'price']
+                updated_products = csv.DictWriter(products_file, fieldnames='name')
+
+                updated_products.writeheader()
+                updated_products.writerows(products)
+        except FileNotFoundError:
+            print('Failed to open file.')
+
+        try:
+            with open('week_4/source/couriers.csv', mode='w') as couriers_file:
+                couriers_keys = ['name', 'phone']
+                updated_couriers = csv.DictWriter(couriers)
+                
+                updated_couriers.writeheader()
+                updated_couriers.writerows(couriers)
+        except FileNotFoundError:
+            print('Failed to open file.')
+
+        exit("Exitting the app. Don't be a stranger.")
+
+    elif main_menu_input == '1':
+        app2.products_menu_opt()
+
+        if 
 

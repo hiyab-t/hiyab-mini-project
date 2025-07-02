@@ -1,4 +1,4 @@
-from library import app2_copied
+from week_2.source import app2
 
 
 products = ["Falafel burgers", "Reuben sandwich", 'Chopped salad', "Pasta House salad", 
@@ -94,7 +94,7 @@ if __name__ == "__main__":
 
         #imported function from app2 to print main menu options
 
-        app2_copied.main_menu_opt()
+        app2.main_menu_opt()
 
         #main menu 
 
