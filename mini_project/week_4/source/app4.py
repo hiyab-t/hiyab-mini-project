@@ -11,16 +11,14 @@ products = [{
         'price': 4
         }]
 
-courier = [
-    {
+courier = [{
         'name':'Uber Eats',
         'phone':'0789887889'
-    },
-    {
+        },
+        {
         'name':'Deliveroo',
         'phone':'0784897810'
-    }
-]
+        }]
 
 orders_list = [{
         "customer_name": "John Jones",
@@ -35,14 +33,43 @@ orders_list = [{
         "status": "Delivered"
         }]
 
+order_status = ['Preparing', 'Out-for-delivery', 'Delivered']
+
 #persisting
 
-#try:
-with open('week_4/data/products.csv', mode='r') as products_file:
+try:
+    with open('week_4/data/products.csv', mode='r') as products_file:
         products_content = csv.DictReader(products_file)
 
-        for row in products_file:
-            print(row)
-#except FileNotFoundError as whoops:
-#    print('Failed to open file.')
+        for products_row in products_file:
+            print(products_row, end='')
+except FileNotFoundError as whoops:
+    print('Failed to open file.')
+
+try:
+    with open('week_4/data/couriers.csv', 'r') as couriers_file:
+        couriers_content = csv.DictReader(couriers_file)
+
+        for couriers_row in couriers_content:
+            print(couriers_row, end='')
+
+except FileNotFoundError as whoops:
+    print('Failed to open file.')
+
+try:
+    with open('week_4/data/orders.csv', 'r') as orders_file:
+        orders_content = csv.DictReader(orders_file)
+        
+        for orders_row in orders_content:
+            print(orders_row, end='')
+
+except FileNotFoundError as whoops:
+    print('File failed to open.')
+    
+
+#print main menu
+
+app2.main_menu_opt()
+
+
 
