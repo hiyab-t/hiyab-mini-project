@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
         #print welcome message
 
-        print("Welcome to Maria's cafe")
+        print("Welcome to Maria's cafe! \n")
 
         #loading products list from products.txt
 
@@ -71,23 +71,21 @@ if __name__ == "__main__":
                 if main_menu_input == '0':
         
                         #save products list to products.txt
-        
-                        with open('week_3/data/products.txt', 'w') as write_products_file:
-                                updated_products_content = write_products_file.write(f'{products}\n')
-                
-                                for updated_line_products in updated_products_content:
-                                        
-                                        print(updated_line_products, end='')
+                        try:
+                                with open('week_3/data/products.txt', 'w') as write_products_file:
+                                        for updated_line_products in products:
+                                                write_products_file.write(updated_line_products + '\n')
+                        except FileNotFoundError as welp:
+                                print('Failed to open file.')
                 
                         #save couriers list to couriers.txt
+                        try:
+                                with open('week_3/data/couriers.txt', 'w') as write_couriers_file:
         
-                        with open('week_3/data/couriers.txt', 'w') as write_couriers_file:
-        
-                                for item in products:
-                                        updated_couriers_content = write_couriers_file.write(f'{item}')
-                
-                        for updated_line_couriers in write_couriers_file:
-                                print(updated_line_couriers, end='')
+                                        for updated_line_couriers in couriers:
+                                                write_couriers_file.write(updated_line_couriers + '\n')
+                        except FileNotFoundError as welp_2:
+                                print('Failed to open file.')
                 
                         exit("Exitting the app. Don't be a stanger!")
         
