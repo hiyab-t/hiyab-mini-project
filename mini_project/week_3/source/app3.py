@@ -92,7 +92,7 @@ if __name__ == "__main__":
         except FileNotFoundError:
                 print('Failed to open file.')
 
-        #imported function from app2 to print main menu options
+        #imported function from app2_copied to print main menu options
 
         app2_copied.main_menu_opt()
 
@@ -130,19 +130,19 @@ if __name__ == "__main__":
                                 continue
         
                         elif input_product_opt == '1':
-                                app2.products_index_list()
+                                app2_copied.products_index_list()
                 
                         elif input_product_opt == '2':
                                 print(products.append(input("What would you like to add?\n")))
         
                         elif input_product_opt == '3':
-                                app2.products_index_list()
+                                app2_copied.products_index_list()
                                 user_input_index = input("Enter the number of the product you would like to update:\n")
                                 user_input_product_name = input("What product would you like to add instead?\n")
                                 products[int(user_input_index)] = user_input_product_name.title()
         
                         elif input_product_opt == '4':
-                                print(app2.products_index_list())
+                                print(app2_copied.products_index_list())
                                 user_input_index_pop = input("Please enter the number of the product you want to delete:\n")
                                 products.pop(int(user_input_index_pop))
                 
@@ -191,7 +191,7 @@ if __name__ == "__main__":
         
                         elif input_orders_menu == '1':
                                 
-                                app2.orders_index_list()
+                                app2_copied.orders_index_list()
         
                         #get user input to update existing order
                         elif input_orders_menu == '2':
@@ -207,26 +207,26 @@ if __name__ == "__main__":
                                 order = {
                                 'customer_name': user_input_name,
                                 'customer_address': user_input_address,
-                                'Customer_phone number': user_input_phone_num,
-                                'Status': order_status
+                                'customer_phone number': user_input_phone_num,
+                                'status': order_status
                                 }
                                 orders_list.append(order)
                                 print(order)
         
                         #printed order status list with index
                         elif input_orders_menu == '3':
-                                app2.orders_index_list()
+                                app2_copied.orders_index_list()
                 
                                 input_order_status_num = input("Which order's status would you like to update?\n") 
         
                                 chosen_order = orders_list[int(input_order_status_num)]
         
                                 print('Order status list')
-                                for index_status, orders_to_list in enumerate(app2.order_status_list):
+                                for index_status, orders_to_list in enumerate(app2_copied.order_status_list):
                                         print(f'{index_status}: {orders_to_list}')
                                 input_status_index = input('What would you like to update the order status to?\n')
         
-                                chosen_order.update({'status': app2.order_status_list[int(input_status_index)]})
+                                chosen_order.update({'status': app2_copied.order_status_list[int(input_status_index)]})
                                 print(f'Order status update successful!\n{chosen_order}')
                 
                                 try:
@@ -238,7 +238,7 @@ if __name__ == "__main__":
                                 
                         #get user input to update order
                         elif input_orders_menu == '4':
-                                app2.orders_index_list()
+                                app2_copied.orders_index_list()
         
                                 input_order_num = input("Which order would you like to update?\n")
         
@@ -266,12 +266,12 @@ if __name__ == "__main__":
                                                                         'customer_phone': input_update_phone})
                                 print(f'Order properties update successful!\n {chosen_order_property_update}')
                         elif input_orders_menu == '5':
-                                app2.orders_index_list()
+                                app2_copied.orders_index_list()
                 
                                 input_delete_order_index = input('Which order would you like to delete?\n')
                 
                                 orders_list.pop(int(input_delete_order_index))
-                                print(f'Order has been successfuly deleted. Remaining orders:\n {app2.orders_index_list()}')
+                                print(f'Order has been successfuly deleted. Remaining orders:\n {app2_copied.orders_index_list()}')
                 else:
                         print("Invalid input. Please enter a valid number.\n")
         

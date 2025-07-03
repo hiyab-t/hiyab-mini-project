@@ -1,5 +1,4 @@
-from week_2.source import app2
-from week_3.source import app3
+from library import app2_copied, app3_copied
 import csv
 
 products = [{
@@ -69,7 +68,7 @@ except FileNotFoundError as whoops:
 
 #print main menu
 
-app2.main_menu_opt()
+app2_copied.main_menu_opt()
 
 main_menu_input = input()
 
@@ -99,7 +98,37 @@ while True:
         exit("Exitting the app. Don't be a stranger.")
 
     elif main_menu_input == '1':
-        app2.products_menu_opt()
+        print("__________________________\n")
+        print("Product Menu\n")
+        print("__________________________\n")
+        print("0 - Return to Main Menu\n" \
+        "1 - Print Products List.\n" \
+        "2 - Create New Product.\n" \
+        "3 - Update Existing Product.\n" \
+        "4 - Delete Product.\n")
+        print("__________________________\n")
 
-        if 
+        input_product_opt = input()
+
+        #product menu
+        if input_product_opt == '0':
+            continue
+
+        elif input_product_opt == '1':
+
+            app2_copied.products_index_list()
+
+        #get user input to create a new order
+
+        elif input_product_opt == '2':
+
+            input_product_name = input("What would you like to add?")
+            input_product_price = input('Set the price: ') 
+
+            add_product = {
+                'name': input_product_name,
+                'price': input_product_price
+            }
+            products.append(add_product)
+            print(f'Product has been successfully added!\n{products}')
 
