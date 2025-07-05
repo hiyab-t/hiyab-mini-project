@@ -1,2 +1,3 @@
-{'name':'Uber Eats','phone':'0789887889'}
-{'name':'Deliveroo','phone':'0784897810'}
+name, phone
+Uber Eats, 0789887889
+Deliveroo, 0784897810

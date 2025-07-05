@@ -2,7 +2,7 @@
 products = ['Mocha', 'Hot chocolate']
 
 #order list
-orders_list = [{
+orders_list =[{
     "customer_name": "John Jones",
     "customer_address": "Main Street, LONDON",
     "customer_phone": "07987654321",
@@ -23,11 +23,7 @@ def main_menu_opt():
     print("\nMain menu options\n" \
     "0 - Exit App.\n" \
     "1 - Products Menu.\n" \
-    "2 - Couriers Menu.\n" \
-    "3 - Orders Menu test.")
-
-
-
+    "2 - Order menu.\n")
 
 #func to get products list with index
 def products_index_list():
@@ -160,14 +156,18 @@ if __name__ == "__main__":
     
                     #utilized while loop to handle empty input and other requirements for customer number
                     while True:
-                            if input_update_phone == '' or input_update_phone.isdigit() and len(input_update_phone) == 11 or len(input_update_phone) == 10:
+                            if input_update_phone.isdigit() and len(input_update_phone) == 11 or len(input_update_phone) == 10:
                                 break
                             else:
                                 print('Please ensure to enter a valid phone number.')
                                 input_update_phone = input('Enter updated customer phone number:\n')
                             
-                    if input_update_name or input_update_address or input_update_phone == '':
-                        print(f'No update was conducted. Order information will remain the same.\n {chosen_order_property_update}')
+                    if input_update_name == '':
+                        break
+                    elif input_update_address == '':
+                        break
+                    elif input_update_phone == '':
+                        print(f'No update was conducted. Order information will remain the same.\n{chosen_order_property_update}')
                         continue
                     else:
                         chosen_order_property_update.update({'customer_name': input_update_name, 
