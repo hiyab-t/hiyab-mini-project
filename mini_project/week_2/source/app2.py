@@ -46,6 +46,7 @@ if __name__ == "__main__":
     while True:
             main_menu_opt()
             main_menu_input = input()
+            main_menu_input.replace(" ", "")
     
             if main_menu_input == '0':
                 quit("Exitting the app. Don't be a stanger!")

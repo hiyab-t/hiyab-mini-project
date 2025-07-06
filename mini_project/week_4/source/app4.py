@@ -1,5 +1,13 @@
-from library import app2_copied, app3_copied
 import csv
+import os
+
+def clear_scroll():
+    if os.name == 'nt':
+        os.system('clr')
+    else:
+        os.system('clear')
+
+
 
 products =[{
         'name': 'Falafel burgers',
@@ -19,7 +27,7 @@ couriers = [{
         'phone':'0784897810'
         }]
 
-orders_list = [{
+orders = [{
         "customer_name": "John Jones",
         "customer_address": "Main Street, LONDON",
         "customer_phone": "07987654321",
@@ -34,8 +42,47 @@ orders_list = [{
 
 order_status = ['Preparing', 'Out-for-delivery', 'Delivered']
 
-#persisting
+def main_menu_opt():
+    print("__________________________\n")
+    print('Main Menu\n')
+    print('0 - Exit the App\n' \
+    '1 - Product Menu\n' \
+    '2 - Couriers Menu\n' \
+    '3 - Orders Menu\n')
+    print("__________________________\n")
 
+def products_menu_opt():
+    print("__________________________\n")
+    print('Products Menu\n')
+    print("0 - Return to Main Menu\n" \
+        "1 - Products List.\n" \
+        "2 - Create New Product.\n" \
+        "3 - Update Existing Product.\n" \
+        "4 - Delete Product.\n")
+    print("__________________________\n")
+
+def products_index_list():
+    print("__________________________\n")
+    print("Here's products List:\n")
+    for products_index, product in enumerate(products):
+        print(f'{products_index} - {product}')
+    print("__________________________\n")
+
+def couriers_index_list():
+    print("__________________________\n")
+    print("Here's Couriers List:\n")
+    for couriers_index, courier in enumerate(couriers):
+        print(f'{couriers_index} - {courier}')
+    print("__________________________\n")
+
+def orders_index_list():
+    print("__________________________\n")
+    print('Orders List\n')
+    for orders_index, order in enumerate(orders):
+        print(f'{orders_index} - {order}')
+    print("__________________________\n")
+
+#persisting data
 try:
     with open('week_4/data/products.csv', mode='r') as products_file:
         products_content = csv.DictReader(products_file)
@@ -65,14 +112,14 @@ try:
 except FileNotFoundError as whoops:
     print('File failed to open.')
     
-
-#print main menu
-
-app2_copied.main_menu_opt()
-
-main_menu_input = input()
-
+#loop main menu opt
 while True:
+
+    #print main menu and get user input
+    main_menu_opt()
+
+    main_menu_input = input()
+
     if main_menu_input == '0':
 
         try: 
@@ -94,35 +141,43 @@ while True:
                 updated_couriers.writerows(couriers)
         except FileNotFoundError:
             print('Failed to open file.')
+        
+        clear_scroll()
 
         exit("Exitting the app. Don't be a stranger.")
 
+    #print product menu and get user input
     elif main_menu_input == '1':
-        print("__________________________\n")
-        print("Product Menu\n")
-        print("__________________________\n")
-        print("0 - Return to Main Menu\n" \
-        "1 - Print Products List.\n" \
-        "2 - Create New Product.\n" \
-        "3 - Update Existing Product.\n" \
-        "4 - Delete Product.\n")
-        input_product_opt = input("__________________________\n")
 
+        products_menu_opt()
 
-        #product menu
+        input_product_opt = input()
+
+        #return to main menu
         if input_product_opt == '0':
             continue
-
+        
+        #products list
         elif input_product_opt == '1':
 
-            app2_copied.products_index_list()
+            products_index_list()
 
-        #get user input to create a new order
-
+        #print products list and get user input for a new product to create
         elif input_product_opt == '2':
 
-            input_product_name = input("What would you like to add?")
-            input_product_price = input('Set the price: ') 
+            products_index_list()
+
+            input_product_name = input("What would you like to add?\n")
+            input_product_price = input('Set the price:\n') 
+            input_product_price.replace(' ', '')
+
+            #validate price input and add new product to product list
+            while True:
+                if input_product_price.isdigit():
+                    break
+                else:
+                    ('Please enter a valid price number.')
+                    input_product_price = input()
 
             add_product = {
                 'name': input_product_name,
@@ -130,56 +185,7 @@ while True:
             }
             products.append(add_product)
             print(f'Product has been successfully added!\n{products}')
-
-        elif input_product_opt == '3':
-
-            input_product_name = input('What would you like to add?')
-            input_product_price = input('Set the price: ')
-            input_product_price.replace(' ', '')
-
-            while True:
-                ('Please ensure to enter a valid price number.')
-                input_product_price = input()
-                if input_product_price.isdigit():
-                    break
-
-                product = {
-                    'name': input_product_name,
-                    'price': input_product_price
-                }
-
-                products.append(product)
-                print(f'Your product has been successfuly added.\n{product}')
-
-        elif input_product_opt == '3':
-            app2_copied.products_index_list()
-
-            input_update_product_num = input('Which product would you like to update?')
-
-            chosen_product_update = products[int(input_update_product_num)]
-
-            input_update_product_name = input("Enter updated product name:\n")
-            input_update_product_price = input("Enter updated price:\n")
-            input_update_product_price.replace(' ', '')
-
-            while True:
-                ('Please ensure to enter a valid price number.')
-                input_update_product_price = input()
-
-                if input_update_product_price.isdigit():
-                    break
-            
-            if input_update_product_name == '':
-                break
-            elif input_update_product_price == '':
-                (f'No changes have been made.\n{chosen_product_update}')
-                continue
-            else:
-                chosen_product_update.update({
-                                            'name': input_update_product_name,
-                                            'price': input_update_product_price
-                                            })
-            print(f'Update successful!\n{chosen_product_update}')
+        
 
 
 
