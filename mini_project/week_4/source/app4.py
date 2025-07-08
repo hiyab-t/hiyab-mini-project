@@ -1,3 +1,4 @@
+from manager import ProductsManager
 import csv
 import os
 
@@ -208,8 +209,13 @@ while True:
             input_updated_product_name = input('Enter updated product name:\n')
             input_updated_product_price = float(input('Set the price:\n'))
 
-            try:
-                input_product_price ==
+            while True:
+                try:
+                    input_updated_product_price = float(input())
+                except ValueError as whoops:
+                    (f'{whoops}. Please enter a valid number.')
+                except input_updated_product_price < 0:
+                    ("Negative numbers are not accepted. Please enter a valid number")
             
 
             while True:
