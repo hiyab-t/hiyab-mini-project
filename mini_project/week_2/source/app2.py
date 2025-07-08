@@ -73,9 +73,22 @@ if __name__ == "__main__":
     
                 elif user_input_product_opt == '3':
                     products_index_list()
-                    user_input_index = input("Enter the number of the product you would like to update:\n")
+                    
+
+                    while True:
+
+                        try:
+                            user_input_index = float(input("Enter the number of the product you would like to update:\n"))
+                            chosen_product = products[user_input_index]
+                        except ValueError as whoops:
+                            print(f"{whoops}. Please enter a valid number.")
+                        except IndexError as oops:
+                            print(f'{oops}. Please enter a valid number.')
+                        else: 
+                            break
+
                     user_input_product_name = input("What product would you like to add?\n")
-                    products[int(user_input_index)] = user_input_product_name.title()
+                    chosen_product = user_input_product_name.title()
     
                 elif user_input_product_opt == '4':
                     print(products_index_list())

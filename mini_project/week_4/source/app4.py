@@ -1,14 +1,6 @@
 import csv
 import os
 
-def clear_scroll():
-    if os.name == 'nt':
-        os.system('clr')
-    else:
-        os.system('clear')
-
-
-
 products =[{
         'name': 'Falafel burgers',
         'price': 3.65
@@ -41,6 +33,12 @@ orders = [{
         }]
 
 order_status = ['Preparing', 'Out-for-delivery', 'Delivered']
+
+def clear_scroll():
+    if os.name == 'nt':
+        os.system('clr')
+    else:
+        os.system('clear')
 
 def main_menu_opt():
     print("__________________________\n")
@@ -119,6 +117,7 @@ while True:
     main_menu_opt()
 
     main_menu_input = input()
+    main_menu_input = main_menu_input.strip()
 
     if main_menu_input == '0':
 
@@ -144,7 +143,7 @@ while True:
         
         clear_scroll()
 
-        exit("Exitting the app. Don't be a stranger.")
+        exit("Exitting the app. Don't be a stranger!")
 
     #print product menu and get user input
     elif main_menu_input == '1':
@@ -152,6 +151,7 @@ while True:
         products_menu_opt()
 
         input_product_opt = input()
+        input_product_opt = input_product_opt.strip()
 
         #return to main menu
         if input_product_opt == '0':
@@ -168,12 +168,23 @@ while True:
             products_index_list()
 
             input_product_name = input("What would you like to add?\n")
-            input_product_price = input('Set the price:\n') 
-            input_product_price.replace(' ', '')
+            input_product_name = input_product_name.strip() 
+            
+            while True:
+                try:
+                    input_product_price = float(input('Set the price:\n'))
+                    break
+                except ValueError as whoops:
+                    print(f'{whoops}. Please enter a valid number.')
+                except input_product_price < 0:
+                    print('Negative numbers are not accepted. Please enter a valid number.')
+                except 'e' in input_product_price:
+                    print('Exponents are not allowed. Please enter a valid number.')
+
 
             #validate price input and add new product to product list
             while True:
-                if input_product_price.isdigit():
+                if input_product_price.isnumeric():
                     break
                 else:
                     ('Please enter a valid price number.')
@@ -185,6 +196,38 @@ while True:
             }
             products.append(add_product)
             print(f'Product has been successfully added!\n{products}')
+
+        elif input_product_opt == '3':
+
+            products_index_list()
+
+            input_update_product_index = input('Enter the number of the product you would like to update:\n')
+
+            chosen_update_product = products[int(input_update_product_index)]
+
+            input_updated_product_name = input('Enter updated product name:\n')
+            input_updated_product_price = float(input('Set the price:\n'))
+
+            try:
+                input_product_price ==
+            
+
+            while True:
+                if input_updated_product_name == '':
+                    if input_
+                else:
+                    chosen_update_product.update({})
+
+            while True:
+                if input_updated_product_name():
+                    break
+                else:
+                    print("Please enter a valid price number.")
+                    input_updated_product_price = input()
+
+            
+
+
         
 
 
