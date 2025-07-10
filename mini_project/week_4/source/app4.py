@@ -11,7 +11,13 @@ products = ProductsManager([{
         {
         'name': 'Reuben sandwich',
         'price': 4
-        }])
+        },
+        {'name': 'Chopped salad',
+        'price': 3},
+        {'name': 'Pasta House salad',
+        'price': 5},
+        {'name': 'Hot Chocolate',
+        'price': 3}])
 
 couriers = [{
         'name':'Uber Eats',
@@ -26,13 +32,17 @@ orders = [{
         "customer_name": "John Jones",
         "customer_address": "Main Street, LONDON",
         "customer_phone": "07987654321",
-        "status": "Preparing"
+        "courier": 1,
+        "status": "Preparing",
+        "items": "1, 4"
         },
         {
         "customer_name": "Hiyab Tewelde",
         "customer_address": "Antrim road, Belfast",
         "customer_phone": "07404313229",
-        "status": "Delivered"
+        "courier": 2, #courier index
+        "status": "Delivered",
+        "items": "1, 3, 4" #product indexes
         }]
 
 order_status = ['Preparing', 'Out-for-delivery', 'Delivered']
@@ -216,9 +226,9 @@ while True:
 
             products_index_list()
 
-            input_update_product_index = input('Enter the number of the product you would like to update:\n')
+            input_update_product_index = get_int_input('Enter the number of the product you would like to update:\n')
 
-            chosen_update_product = products[int(input_update_product_index)]
+            chosen_update_product = products[input_update_product_index]
 
             input_updated_product_name = input('Enter updated product name:\n')
             input_updated_product_price = float(input('Set the price:\n'))
