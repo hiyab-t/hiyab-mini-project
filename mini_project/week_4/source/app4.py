@@ -2,14 +2,16 @@ from manager import ProductsManager
 import csv
 import os
 
-products =[{
+
+
+products = ProductsManager([{
         'name': 'Falafel burgers',
         'price': 3.65
         },
         {
         'name': 'Reuben sandwich',
         'price': 4
-        }]
+        }])
 
 couriers = [{
         'name':'Uber Eats',
@@ -34,6 +36,18 @@ orders = [{
         }]
 
 order_status = ['Preparing', 'Out-for-delivery', 'Delivered']
+
+class ProductsManager:
+    def __init__(self, product_name, product_price):
+        self.product_name = product_name
+        self.product_price = product_price
+
+    def products_display(self):
+        print("__________________________\n")
+        print("Here's Products List:\n")
+        for products_index, product in enumerate(products):
+            print(f'{products_index} - {product[{self.product_name}]}    \n{product[{self.product_price}]}')
+        print("__________________________\n")
 
 def clear_scroll():
     if os.name == 'nt':
@@ -161,7 +175,7 @@ while True:
         #products list
         elif input_product_opt == '1':
 
-            products_index_list()
+            print(products.products_display)
 
         #print products list and get user input for a new product to create
         elif input_product_opt == '2':
@@ -218,18 +232,18 @@ while True:
                     ("Negative numbers are not accepted. Please enter a valid number")
             
 
-            while True:
-                if input_updated_product_name == '':
-                    if input_
-                else:
-                    chosen_update_product.update({})
-
-            while True:
-                if input_updated_product_name():
-                    break
-                else:
-                    print("Please enter a valid price number.")
-                    input_updated_product_price = input()
+            #while True:
+            #    if input_updated_product_name == '':
+            #        if input_
+            #    else:
+            #        chosen_update_product.update({})
+#
+            #while True:
+            #    if input_updated_product_name():
+            #        break
+            #    else:
+            #        print("Please enter a valid price number.")
+            #        input_updated_product_price = input()
 
             
 
