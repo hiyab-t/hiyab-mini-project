@@ -99,6 +99,27 @@ def products_menu_opt():
         "4 - Delete Product.\n")
     print("__________________________\n")
 
+def couriers_menu_opt():
+    print("__________________________\n")
+    print("Couriers Menu\n"
+            "0 - Return to Main Menu\n"
+            "1 - Couriers List\n"
+            "2 - Create New Courier\n"
+            "3 - Update Existing Courier\n"
+            "4 - Delete Courier")
+    print("__________________________\n")
+
+def order_menu_opt():
+    print("__________________________\n")
+    print("Orders menu\n" \
+            "0 - Return to main menu.\n" \
+            "1 - Orders list.\n" \
+            "2 - Create New Order.\n" \
+            "3 - Update Existing Order Status.\n" \
+            "4 - Update Existing Order.\n" \
+            "5 - Delete Order.\n")
+    print('__________________________\n')
+
 def products_index_list():
     print("__________________________\n")
     print("Products List:\n")
@@ -108,17 +129,22 @@ def products_index_list():
 
 def couriers_index_list():
     print("__________________________\n")
-    print("Here's Couriers List:\n")
+    print("Couriers List:\n")
     for couriers_index, courier in enumerate(couriers):
-        print(f'{couriers_index} - {courier}')
+        print(f'{couriers_index} - {courier['name']}\n {courier['phone']}')
     print("__________________________\n")
 
 def orders_index_list():
     print("__________________________\n")
-    print('Orders List\n')
-    for orders_index, order in enumerate(orders):
-        print(f'{orders_index} - {order}')
+    print('Orders list')
+    for index_order, order in enumerate(orders):
+            print(f'{index_order} - \n{order["customer_name"]}\n {order['customer_address']}\n{order['customer_phone']}\n{order['status']}')
     print("__________________________\n")
+
+def order_status_list_index():
+    print("__________________________\n")
+    
+    
 
 #persisting data
 try:
@@ -156,10 +182,10 @@ while True:
     #print main menu and get user input
     main_menu_opt()
 
-    main_menu_input = input()
-    main_menu_input = main_menu_input.strip()
+    input_main_menu = input()
+    input_main_menu = input_main_menu.strip()
 
-    if main_menu_input == '0':
+    if input_main_menu == '0':
 
         try: 
             with open('week_4/data/products.csv', mode='w') as products_file:
@@ -186,11 +212,12 @@ while True:
         exit("Exitting the app. Don't be a stranger!")
 
     #print product menu and get user input
-    elif main_menu_input == '1':
+    elif input_main_menu == '1':
 
         products_menu_opt()
 
         input_product_opt = input()
+        input_product_opt = input_product_opt.title()
         input_product_opt = input_product_opt.strip()
 
         #return to main menu
@@ -207,16 +234,16 @@ while True:
 
             products_index_list()
 
-            input_product_name = input("What would you like to add?\n")
-            input_product_name = input_product_name.strip() 
+            input_new_product_name = input("What product would you like to add?\n")
+            input_new_product_name = input_new_product_name.strip() 
             
-            input_product_price = get_float_input('Set the price:\n')
+            input_new_product_price = get_float_input('Set the price:\n')
 
             #create new product 
 
             create_product = {
-                'name': input_product_name,
-                'price': input_product_price
+                'name': input_new_product_name,
+                'price': input_new_product_price
             }
             products.append(create_product)
             print(f'Product has been successfully added!\n{products}')
@@ -244,6 +271,7 @@ while True:
                 result = get_float_input(f'Enter the price again to confirm:\n')
                 chosen_update_product.update({'price':input_updated_product_price})
                 print(f'Here is the updated product.\n {chosen_update_product}') 
+                continue
 
         elif input_product_opt == '4':
 
@@ -253,6 +281,119 @@ while True:
 
             products.pop(input_delete_product_index)
             print(f'Product has been succeessfully deleted. Remainining products:\n{products}')
+            continue
+
+    #couriers menu
+    elif input_main_menu == '2':
+
+        couriers_menu_opt()
+
+        #get input for courier option
+        input_courier_opt = input()
+
+        #return to main menu
+        if input_courier_opt == '0':
+            continue
+        
+        #print courier list
+        elif input_courier_opt == '1':
+            couriers_index_list()
+
+        #create a new courier
+        elif input_courier_opt == '2':
+            
+            input_new_courier_name = input("What courier would you like to add?\n")
+            input_new_courier_name = input_new_courier_name.title()
+            input_new_courier_name = input_new_courier_name.strip()
+            input_new_courier_phone = input("Enter courier phone number:\n")
+
+            couriers.append({'name':input_new_courier_name,
+                            'phone':input_new_courier_phone})
+            continue
+            
+        #update a courier
+        elif input_courier_opt == '3':
+
+            couriers_index_list()
+
+            input_update_courier_index = get_int_input('Enter the number of the courier you would like to update:\n')
+
+            chosen_update_courier = couriers[input_update_courier_index]
+
+            input_update_courier_name = input("Enter updated courier name:\n")
+            input_update_courier_phone = input("Enter updated courier's phone number:\n")
+            input_update_courier_phone = input_update_courier_phone.replace(' ','')
+
+            if input_update_courier_name == '':
+                print(f"No changes were made to the chosen courier's name.\n{chosen_update_courier}")
+            else:
+                chosen_update_courier.update({'name':input_new_courier_name})
+
+            while True:
+                print('Please ensure to enter a valid phone number.')
+                input_update_courier_phone = input('Enter courier phone number:\n')
+                if input_update_courier_phone.isdigit() and len(input_update_courier_phone) == 11 or len(input_update_courier_phone):
+                    break
+            
+            if input_update_courier_phone == '':
+                print(f"No changed were made to the chosen courier's phone number.")
+                continue
+            else:
+                chosen_update_courier.update({'phone':input_update_courier_phone})
+                print(f'Here is the updated courier:\n{chosen_update_courier}')
+                continue
+
+        #delete courier
+        elif input_courier_opt == '4':
+
+            couriers_index_list()
+
+            input_delete_courier_index = input('Enter the number of the courier you would like to delete:\n')
+
+            couriers.pop(input_delete_courier_index)
+            continue
+    
+    #orders menu
+    elif input_main_menu == '3':
+
+        order_menu_opt()
+
+        input_orders_opt = input()
+
+        #return to main menu
+        if input_orders_opt == '0':
+            continue
+        
+        #print orders menu
+        elif input_orders_opt == '1':
+
+            orders_index_list()
+
+        #create new order
+        elif input_orders_opt == '2':
+
+            input_new_customer_name = input("Enter customer name:\n")
+            input_new_customer_address = input('Enter customer address:\n')
+            input_new_customer_phone = input('Enter customer phone:\n')
+            input_new_customer_phone = input_new_customer_phone.replace(' ', '')
+
+            products_index_list()
+
+            input_items_list = input
+
+        #update order status
+        elif input_orders_opt == '3':
+            
+
+
+
+
+
+
+            
+
+
+
             
 
             

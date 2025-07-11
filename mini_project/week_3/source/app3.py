@@ -233,12 +233,11 @@ if __name__ == "__main__":
                                         user_input_phone_num = input('Enter customer phone number:\n')
                                         if user_input_phone_num.isdigit() and len(user_input_phone_num) == 11 or len(user_input_phone_num) == 10:
                                                 break
-                                order_status = 'PREPARING'
+                                
                                 order = {
                                 'customer_name': user_input_name,
                                 'customer_address': user_input_address,
                                 'customer_phone number': user_input_phone_num,
-                                'status': order_status
                                 }
                                 orders_list.append(order)
                                 print(order)
