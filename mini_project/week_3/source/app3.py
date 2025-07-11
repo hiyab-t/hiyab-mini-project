@@ -54,6 +54,20 @@ def orders_menu_opt():
                 "5 - Delete Order.\n")
         print('__________________________\n')
 
+def products_index_list():
+        print("__________________________\n")
+        print('Products list')
+        for index_product, product in enumerate(products):
+                print(f'{index_product} - {product}')
+        print("__________________________\n")
+
+def orders_index_list():
+        print("__________________________\n")
+        print('Orders list')
+        for index_order, order in enumerate(orders_list):
+                print(f'{index_order} - \n{order["customer_name"]}\n {order['customer_address']}\n{order['customer_phone']}\n{order['status']}')
+        print("__________________________\n")
+
 #functions to list couriers with index
 
 def couriers_index_list():
@@ -95,12 +109,19 @@ if __name__ == "__main__":
 
         #imported function from app2 to print main menu options
 
-        app2.main_menu_opt()
+        
 
-        #main menu 
+        #start of the loop of options 
 
         while True:
+
+                #main menu
+                app2.main_menu_opt()
+
+                #user input main menu
                 main_menu_input = input()
+
+                #persist data and exit
                 if main_menu_input == '0':
         
                         #save products list to products.txt
@@ -121,29 +142,37 @@ if __name__ == "__main__":
                 
                         exit("Exitting the app. Don't be a stanger!")
         
+                #product menu
                 elif main_menu_input == '1':
                         
                         products_menu_opt()
                         input_product_opt = input()
         
-                        #product menu
+                        #return to main menu
                         if input_product_opt == '0':
                                 continue
-        
+                        
+                        #print main menu
                         elif input_product_opt == '1':
-                                app2.products_index_list()
-                
+                                products_index_list()
+
+                        #create product
                         elif input_product_opt == '2':
-                                print(products.append(input("What would you like to add?\n")))
-        
+                                
+                                add_product = input("What would you like to add?\n")
+                                products.append(add_product)
+                                print(f'{products}')
+
+                        #update product
                         elif input_product_opt == '3':
-                                app2.products_index_list()
+                                products_index_list()
                                 user_input_index = input("Enter the number of the product you would like to update:\n")
                                 user_input_product_name = input("What product would you like to add instead?\n")
                                 products[int(user_input_index)] = user_input_product_name.title()
-        
+
+                        #delete product
                         elif input_product_opt == '4':
-                                print(app2.products_index_list())
+                                products_index_list()
                                 user_input_index_pop = input("Please enter the number of the product you want to delete:\n")
                                 products.pop(int(user_input_index_pop))
                 
@@ -192,7 +221,7 @@ if __name__ == "__main__":
         
                         elif input_orders_menu == '1':
                                 
-                                app2.orders_index_list()
+                                orders_index_list()
         
                         #get user input to update existing order
                         elif input_orders_menu == '2':
@@ -216,7 +245,7 @@ if __name__ == "__main__":
         
                         #printed order status list with index
                         elif input_orders_menu == '3':
-                                app2.orders_index_list()
+                                orders_index_list()
                 
                                 input_order_status_num = input("Which order's status would you like to update?\n") 
         
@@ -239,7 +268,7 @@ if __name__ == "__main__":
                                 
                         #get user input to update order
                         elif input_orders_menu == '4':
-                                app2.orders_index_list()
+                                orders_index_list()
         
                                 input_order_num = input("Which order would you like to update?\n")
         
@@ -267,7 +296,7 @@ if __name__ == "__main__":
                                                                         'customer_phone': input_update_phone})
                                 print(f'Order properties update successful!\n {chosen_order_property_update}')
                         elif input_orders_menu == '5':
-                                app2.orders_index_list()
+                                orders_index_list()
                 
                                 input_delete_order_index = input('Which order would you like to delete?\n')
                 

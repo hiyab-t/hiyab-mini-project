@@ -1,10 +1,36 @@
-from manager import ProductsManager
 import csv
 import os
 
+#tobe imported
+def get_int_input(prompt_int, **kwargs):
+    while True:
+            try: 
+                value1 = int(input(prompt_int))
+                if value1 < 0:
+                    raise ValueError('Negative numbers are not allowed')
+            except ValueError as whoops:
+                print(f'{whoops}. Please enter a valid number.')
+            except IndexError as oops:
+                print(f'{oops}. Please enter a valid number.')
+            else:
+                return value1
 
+def get_float_input(prompt_float, **kwargs):
+    while True:
+        try:
+            value = float(input(prompt_float))
+            if value < 0:
+                raise ValueError("Negative numbers are not allowed")
+            elif value != round(value, 2):
+                raise ValueError("Numbers must rounded up to two decimal numbers")
+        except ValueError as whoops:
+                print(f'{whoops}. Please enter a valid number.')
+        except OverflowError as ouou:
+                print(f'{ouou}. Please enter a valid number.')
+        else:
+            return value
 
-products = ProductsManager([{
+products = [{
         'name': 'Falafel burgers',
         'price': 3.65
         },
@@ -17,7 +43,7 @@ products = ProductsManager([{
         {'name': 'Pasta House salad',
         'price': 5},
         {'name': 'Hot Chocolate',
-        'price': 3}])
+        'price': 2}]
 
 couriers = [{
         'name':'Uber Eats',
@@ -47,17 +73,6 @@ orders = [{
 
 order_status = ['Preparing', 'Out-for-delivery', 'Delivered']
 
-class ProductsManager:
-    def __init__(self, product_name, product_price):
-        self.product_name = product_name
-        self.product_price = product_price
-
-    def products_display(self):
-        print("__________________________\n")
-        print("Here's Products List:\n")
-        for products_index, product in enumerate(products):
-            print(f'{products_index} - {product[{self.product_name}]}    \n{product[{self.product_price}]}')
-        print("__________________________\n")
 
 def clear_scroll():
     if os.name == 'nt':
@@ -86,9 +101,9 @@ def products_menu_opt():
 
 def products_index_list():
     print("__________________________\n")
-    print("Here's products List:\n")
+    print("Products List:\n")
     for products_index, product in enumerate(products):
-        print(f'{products_index} - {product}')
+        print(f'{products_index} - {product['name']} .................... {product['price']}')
     print("__________________________\n")
 
 def couriers_index_list():
@@ -185,7 +200,7 @@ while True:
         #products list
         elif input_product_opt == '1':
 
-            print(products.products_display)
+            products_index_list()
 
         #print products list and get user input for a new product to create
         elif input_product_opt == '2':
@@ -195,31 +210,15 @@ while True:
             input_product_name = input("What would you like to add?\n")
             input_product_name = input_product_name.strip() 
             
-            while True:
-                try:
-                    input_product_price = float(input('Set the price:\n'))
-                    break
-                except ValueError as whoops:
-                    print(f'{whoops}. Please enter a valid number.')
-                except input_product_price < 0:
-                    print('Negative numbers are not accepted. Please enter a valid number.')
-                except 'e' in input_product_price:
-                    print('Exponents are not allowed. Please enter a valid number.')
+            input_product_price = get_float_input('Set the price:\n')
 
+            #create new product 
 
-            #validate price input and add new product to product list
-            while True:
-                if input_product_price.isnumeric():
-                    break
-                else:
-                    ('Please enter a valid price number.')
-                    input_product_price = input()
-
-            add_product = {
+            create_product = {
                 'name': input_product_name,
                 'price': input_product_price
             }
-            products.append(add_product)
+            products.append(create_product)
             print(f'Product has been successfully added!\n{products}')
 
         elif input_product_opt == '3':
@@ -231,30 +230,32 @@ while True:
             chosen_update_product = products[input_update_product_index]
 
             input_updated_product_name = input('Enter updated product name:\n')
-            input_updated_product_price = float(input('Set the price:\n'))
+            input_updated_product_price = input("Set the price:\n")
 
-            while True:
-                try:
-                    input_updated_product_price = float(input())
-                except ValueError as whoops:
-                    (f'{whoops}. Please enter a valid number.')
-                except input_updated_product_price < 0:
-                    ("Negative numbers are not accepted. Please enter a valid number")
+            if input_updated_product_name == '':
+                print(f'No changes were conducted to the product name.\n {chosen_update_product}')
+            else:
+                chosen_update_product.update({'name': input_updated_product_name})
+            if input_updated_product_price == '':
+                result = None
+                print('No changes were been made to product price.\n ')
+                print(f'{chosen_update_product}')    
+            else:
+                result = get_float_input(f'Enter the price again to confirm:\n')
+                chosen_update_product.update({'price':input_updated_product_price})
+                print(f'Here is the updated product.\n {chosen_update_product}') 
+
+        elif input_product_opt == '4':
+
+            products_index_list()
+
+            input_delete_product_index = get_int_input('Which product would you like to delete?\n')
+
+            products.pop(input_delete_product_index)
+            print(f'Product has been succeessfully deleted. Remainining products:\n{products}')
             
 
-            #while True:
-            #    if input_updated_product_name == '':
-            #        if input_
-            #    else:
-            #        chosen_update_product.update({})
-#
-            #while True:
-            #    if input_updated_product_name():
-            #        break
-            #    else:
-            #        print("Please enter a valid price number.")
-            #        input_updated_product_price = input()
-
+            
             
 
 

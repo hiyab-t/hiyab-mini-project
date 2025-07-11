@@ -7,9 +7,9 @@ class ProductsManager:
 
     def products_display(self):
         print("__________________________\n")
-        print("Here's products List:\n")
-        #for products_index, product in enumerate(products):
-        #    print(f'{products_index} - {product[{self.name}]}    \n{product[{self.price}]}')
+        print("Products List:\n")
+        for products_index, product in enumerate(products):
+            print(f'{products_index} - {product[{self.name}]}    \n{product[{self.price}]}')
         print(f' I like {self.name}, price is {self.price}')
         print("__________________________\n")
 
@@ -18,6 +18,12 @@ product = ProductsManager("Hot chocolate", 2)
 
 product.products_display()
 
+def products_index_list():
+    print("__________________________\n")
+    print("Here's products List:\n")
+    for products_index, product in enumerate(products):
+        print(f'{products_index} - {product}')
+    print("__________________________\n")
 
         
 
