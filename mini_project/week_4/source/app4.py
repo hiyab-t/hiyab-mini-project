@@ -2,31 +2,31 @@ import csv
 import os
 
 #tobe imported
-def get_int_input(prompt_int, **kwargs):
+def get_int_input():
     while True:
             try: 
-                value1 = int(input(prompt_int))
-                if value1 < 0:
+                value = int(input())
+                if value < 0:
                     raise ValueError('Negative numbers are not allowed')
-            except ValueError as whoops:
-                print(f'{whoops}. Please enter a valid number.')
-            except IndexError as oops:
-                print(f'{oops}. Please enter a valid number.')
+            except ValueError as v_oops:
+                print(f'{v_oops}. Please enter a valid number.')
+            except IndexError as i_oops:
+                print(f'{i_oops}. Please enter a valid number.')
             else:
-                return value1
+                return value
 
-def get_float_input(prompt_float, **kwargs):
+def get_float_input():
     while True:
         try:
-            value = float(input(prompt_float))
+            value = float(input())
             if value < 0:
                 raise ValueError("Negative numbers are not allowed")
             elif value != round(value, 2):
                 raise ValueError("Numbers must rounded up to two decimal numbers")
-        except ValueError as whoops:
-                print(f'{whoops}. Please enter a valid number.')
-        except OverflowError as ouou:
-                print(f'{ouou}. Please enter a valid number.')
+        except ValueError as v_oops:
+                print(f'{v_oops}. Please enter a valid number.')
+        except OverflowError as o_oops:
+                print(f'{o_oops}. Please enter a valid number.')
         else:
             return value
 
@@ -73,6 +73,22 @@ orders = [{
 
 order_status = ['Preparing', 'Out-for-delivery', 'Delivered']
 
+#to be imported to util
+def get_validated_int_input_order_items():
+    while True:
+        try:
+            list_order_items = [int(product) for product in input("Enter the number representations of the items you would like to order(Please separate them by comma):\n").split(',')]
+            access_order_items_list = [products[product_item_index] for product_item_index in (list_order_items)] 
+            print(f'Ordered list of items: {list_order_items}')
+            for product_item in access_order_items_list:
+                print(f'{product_item['name']} - Price: {product_item['price']}')
+            break
+        except ValueError as v_oops:
+            print(f'{v_oops}. Please enter a valid number or numbers.')
+        except IndexError as i_oops:
+            print(f'{i_oops}. Please enter a valid number or numbers.')
+        except Exception as err:
+            print(f"Unexpected {err=}, {type(err)=}. Please enter a valid number or numbers.")
 
 def clear_scroll():
     if os.name == 'nt':
@@ -138,7 +154,7 @@ def orders_index_list():
     print("__________________________\n")
     print('Orders list')
     for index_order, order in enumerate(orders):
-            print(f'{index_order} - \n{order["customer_name"]}\n {order['customer_address']}\n{order['customer_phone']}\n{order['status']}')
+            print(f'{index_order} - \n{order["customer_name"]}\n {order['customer_address']}\n{order['customer_phone']}\n{order['courier']}\n{order['status']}\n{order['items']}')
     print("__________________________\n")
 
 def order_status_list_index():
@@ -177,9 +193,11 @@ except FileNotFoundError as whoops:
     print('File failed to open.')
     
 #loop main menu opt
+
 while True:
 
     #print main menu and get user input
+
     main_menu_opt()
 
     input_main_menu = input()
@@ -212,6 +230,7 @@ while True:
         exit("Exitting the app. Don't be a stranger!")
 
     #print product menu and get user input
+
     elif input_main_menu == '1':
 
         products_menu_opt()
@@ -221,15 +240,18 @@ while True:
         input_product_opt = input_product_opt.strip()
 
         #return to main menu
+
         if input_product_opt == '0':
             continue
         
         #products list
+
         elif input_product_opt == '1':
 
             products_index_list()
 
         #print products list and get user input for a new product to create
+
         elif input_product_opt == '2':
 
             products_index_list()
@@ -237,7 +259,8 @@ while True:
             input_new_product_name = input("What product would you like to add?\n")
             input_new_product_name = input_new_product_name.strip() 
             
-            input_new_product_price = get_float_input('Set the price:\n')
+            print('Set the price:\n')
+            input_new_product_price = get_float_input()
 
             #create new product 
 
@@ -252,7 +275,8 @@ while True:
 
             products_index_list()
 
-            input_update_product_index = get_int_input('Enter the number of the product you would like to update:\n')
+            print('Enter the number of the product you would like to update:\n')
+            input_update_product_index = get_int_input()
 
             chosen_update_product = products[input_update_product_index]
 
@@ -268,7 +292,8 @@ while True:
                 print('No changes were been made to product price.\n ')
                 print(f'{chosen_update_product}')    
             else:
-                result = get_float_input(f'Enter the price again to confirm:\n')
+                print('Enter the price again to confirm:\n')
+                result = get_float_input()
                 chosen_update_product.update({'price':input_updated_product_price})
                 print(f'Here is the updated product.\n {chosen_update_product}') 
                 continue
@@ -277,7 +302,8 @@ while True:
 
             products_index_list()
 
-            input_delete_product_index = get_int_input('Which product would you like to delete?\n')
+            print('Which product would you like to delete?\n')
+            input_delete_product_index = get_int_input()
 
             products.pop(input_delete_product_index)
             print(f'Product has been succeessfully deleted. Remainining products:\n{products}')
@@ -316,7 +342,8 @@ while True:
 
             couriers_index_list()
 
-            input_update_courier_index = get_int_input('Enter the number of the courier you would like to update:\n')
+            print('Enter the number of the courier you would like to update:\n')
+            input_update_courier_index = get_int_input()
 
             chosen_update_courier = couriers[input_update_courier_index]
 
@@ -379,10 +406,35 @@ while True:
 
             products_index_list()
 
-            input_items_list = input
+            #get a validated string user input for ordered product index values
+            input_new_customer_items = get_validated_int_input_order_items()
+
+            couriers_index_list()
+
+            input_new_customer_courier = get_int_input()
+
+            order_status = 'Preparing'
+
+            order = {
+                'customer_name': input_new_courier_name,
+                'customer_address': input_new_customer_address,
+                'customer_phone': input_new_customer_phone,
+                'courier': input_new_customer_courier,
+                'status': order_status,
+                'items': input_new_customer_items
+            }
+
+            orders.append(order)
+
+            print('New Order successfully created!')
+            for index_order in order:
+                print(order)
+            
+            continue
 
         #update order status
         elif input_orders_opt == '3':
+            
             
 
 
@@ -401,8 +453,4 @@ while True:
 
 
         
-
-
-
-
 
