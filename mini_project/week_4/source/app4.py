@@ -1,8 +1,9 @@
 import csv
 import os
+import re
 
 #tobe imported
-def get_int_input():
+def validate_int_input():
     while True:
             try: 
                 value = int(input())
@@ -15,7 +16,7 @@ def get_int_input():
             else:
                 return value
 
-def get_float_input():
+def validate_float_input():
     while True:
         try:
             value = float(input())
@@ -29,6 +30,15 @@ def get_float_input():
                 print(f'{o_oops}. Please enter a valid number.')
         else:
             return value
+        
+def validate_phone_num(input_phone,**kwargs):
+    while True:
+        input_phone = re.sub(r'\s+', '', input_phone)
+        if input_phone.isdigit() and (len(input_phone) == 11 or len(input_phone) == 10):
+            return input_phone
+        else:
+            print('Invalid phone number. Please try again.')
+            input_phone = input()
 
 products = [{
         'name': 'Falafel burgers',
@@ -73,15 +83,15 @@ orders = [{
 
 order_status = ['Cancelled','Preparing', 'Out-for-delivery', 'Delivered']
 
-#to be imported to util
-def get_validated_int_input_order_items():
+#tget_ imported to util
+def validate_int_input_order_items():
     while True:
         try:
             list_order_items = [int(product) for product in input("Enter the number representation of the items you would like to place order(Please separate them by comma):\n").split(',')]
             access_order_items_list = [products[product_item_index] for product_item_index in (list_order_items)] 
             print(f'Ordered list of items: {list_order_items}')
             for product_item in access_order_items_list:
-                print(f'{product_item['name']} -                      Price: {product_item['price']}\n')
+                print(f'{product_item['name']}\nPrice: {product_item['price']}\n')
             break
         except ValueError as v_oops:
             print(f'{v_oops}. Please enter a valid number or numbers.')
@@ -143,21 +153,21 @@ def products_index_list():
     print("__________________________\n")
     print("Products List:\n")
     for products_index, product in enumerate(products):
-        print(f'{products_index} - {product['name']}                      Price - {product['price']}\n')
+        print(f'{products_index} - {product['name']}\nPrice - {product['price']}\n')
     print("__________________________\n")
 
 def couriers_index_list():
     print("__________________________\n")
     print("Couriers List:\n")
     for couriers_index, courier in enumerate(couriers):
-        print(f'{couriers_index} - {courier['name']}\n {courier['phone']}\n')
+        print(f'{couriers_index} - {courier['name']}\n{courier['phone']}\n')
     print("__________________________\n")
 
 def orders_index_list():
     print("__________________________\n")
     print('Orders List')
     for index_order, order in enumerate(orders):
-            print(f'{index_order} - \n{order["customer_name"]}\n {order['customer_address']}\n{order['customer_phone']}\n{order['courier']}\n{order['status']}\n{order['items']}\n')
+            print(f'{index_order} - \nCustomer name: {order["customer_name"]}\nCustomer address: {order['customer_address']}\nCustomer phone: {order['customer_phone']}\nCourier: {order['courier']}\nStatus: {order['status']}\nItems: {order['items']}\n')
     print("__________________________\n")
 
 def order_status_list_index():
@@ -265,7 +275,7 @@ while True:
             input_new_product_name = input_new_product_name.strip() 
             
             print('Set the price:\n')
-            input_new_product_price = get_float_input()
+            input_new_product_price = validate_float_input()
 
             #create new product 
 
@@ -281,7 +291,7 @@ while True:
             products_index_list()
 
             print('Enter the number of the product you would like to update:\n')
-            input_update_product_index = get_int_input()
+            input_update_product_index = validate_int_input()
 
             chosen_update_product = products[input_update_product_index]
 
@@ -298,7 +308,7 @@ while True:
                 print(f'{chosen_update_product}')    
             else:
                 print('Enter the price again to confirm:\n')
-                result = get_float_input()
+                result = validate_float_input()
                 chosen_update_product.update({'price':input_updated_product_price})
                 print(f'Here is the updated product.\n {chosen_update_product}') 
                 continue
@@ -308,7 +318,7 @@ while True:
             products_index_list()
 
             print('Which product would you like to delete?\n')
-            input_delete_product_index = get_int_input()
+            input_delete_product_index = validate_int_input()
 
             products.pop(input_delete_product_index)
             print(f'Product has been succeessfully deleted. Remainining products:\n{products}')
@@ -338,6 +348,9 @@ while True:
             input_new_courier_name = input_new_courier_name.strip()
             input_new_courier_phone = input("Enter courier phone number:\n")
 
+            #validate phone number input
+            input_new_courier_phone = validate_phone_num(input_new_courier_phone)
+
             couriers.append({'name':input_new_courier_name,
                             'phone':input_new_courier_phone})
             continue
@@ -348,34 +361,36 @@ while True:
             couriers_index_list()
 
             print('Enter the number of the courier you would like to update:\n')
-            input_update_courier_index = get_int_input()
+            input_update_courier_index = validate_int_input()
 
             chosen_update_courier = couriers[input_update_courier_index]
 
             input_update_courier_name = input("Enter updated courier name:\n")
-            input_update_courier_phone = input("Enter updated courier's phone number:\n")
-            input_update_courier_phone = input_update_courier_phone.replace(' ','')
 
             if input_update_courier_name == '':
-                print(f"No changes were made to the chosen courier's name.")
+                print(f"\nNo changes were made to the chosen courier's name.")
                 get_courier_name = chosen_update_courier.get('name')
                 print(f'Courier name remains {get_courier_name}.\n')
             else:
                 chosen_update_courier.update({'name':input_update_courier_name})
+                get_courier_name = chosen_update_courier.get('name')
+                print(f'Courier name has been updated to {get_courier_name}')
 
+            #get courier phone 
+            input_update_courier_phone = input("Enter updated courier's phone number:\n")
+
+            #validate courier phone
             if input_update_courier_phone == '':
                 print(f"No changed were made to the chosen courier's phone number.")
                 get_courier_phone = chosen_update_courier.get('phone')
-                print(f'Courier phone number reamins {get_courier_phone}.')
+                print(f'Courier phone number reamins {get_courier_phone}.\n')
             else:
-                while True:
-                    print('Please ensure to enter a valid phone number.')
-                    input_update_courier_phone = input('Enter courier phone number:\n')
-                    if input_update_courier_phone.isdigit() and len(input_update_courier_phone) == 11 or len(input_update_courier_phone):
-                        chosen_update_courier.update({'phone':input_update_courier_phone})
-                        print(f'\nHere is the updated courier:\n{chosen_update_courier}')
-                        break
-            print('\nAction completed. Returning to main menu.')
+                input_update_courier_phone = validate_phone_num(input_update_courier_phone)
+                chosen_update_courier.update({'phone':input_update_courier_phone})
+                get_courier_phone = chosen_update_courier.get('phone')
+                print(f'\nCourier phone number has been updated to {get_courier_phone}.\n')         
+            
+            print('\nAction completed. Returning to Main Menu.')
             continue
 
         #delete courier
@@ -410,16 +425,17 @@ while True:
             input_new_customer_name = input("Enter customer name:\n")
             input_new_customer_address = input('Enter customer address:\n')
             input_new_customer_phone = input('Enter customer phone:\n')
-            input_new_customer_phone = input_new_customer_phone.replace(' ', '')
+
+            input_new_customer_phone = validate_phone_num(input_new_customer_phone)
 
             products_index_list()
 
             #get a validated string user input for ordered product index values
-            input_new_customer_items = get_validated_int_input_order_items()
+            input_new_customer_items = validate_int_input_order_items()
 
             couriers_index_list()
 
-            input_new_customer_courier = get_int_input()
+            input_new_customer_courier = validate_int_input()
 
             order_status = 'Preparing'
 
@@ -445,38 +461,108 @@ while True:
 
             orders_index_list()
 
-            input_update_status_index = get_int_input()
+            input_update_status_index = validate_int_input()
 
             chosen_update_order = orders[input_update_status_index]
         
             order_status_list_index()
 
-            input_update_status_index = get_int_input()
+            input_update_status_index = validate_int_input()
 
-            chosen_update_order.update({'status': input_update_status_index})
+            chosen_update_order.update({
+                'status': input_update_status_index
+                })
             print(f'Order Status has been successfully updated!\n{chosen_update_order}')
 
+            continue
+
+        #update order property
         elif input_orders_opt == '4':
 
             orders_index_list()
 
-            print('Which order would you like to order?\n')
-            input_update_order_property_index = get_int_input()
+            print('Which order would you like to update?\n')
+            input_update_order_property_index = validate_int_input()
 
-            chosen_update_order_property = orders[input_update_status_index]
+            chosen_update_order_property = orders[input_update_order_property_index]
 
             input_update_customer_name = input("Enter updated customer name:\n")
+            
             input_update_customer_address = input('Enter updated customer address:\n')
             input_update_customer_phone = input('Enter updated customer phone number:\n')
-            input_update_customer_phone.replace(' ','')
 
-            if input_update_courier_name == '':
-                print(f"No changes were made to customer name.")
-                get_customer_name = chosen_update_order_property.get('customer_name')
-                print(f'Customer name remains {get_customer_name}')
-                break
+            couriers_index_list()
+            print('Enter updated courier choice:\n')
+            input_update_customer_courier = input()
+
+            products_index_list()
+
+            #get a validated string user input for ordered product index values
+            input_update_customer_items = input()
+            
+            #customer name update with feedback if no change
+            if input_update_customer_name == '':
+                print('No change has been made to customer name.')
             else:
-                chosen_update_order_property.update({'customer_name': input_new_courier_name})
+                chosen_update_order_property.update({
+                    'customer_name': input_update_customer_name
+                    })
+                get_customer_name = chosen_update_order_property.get('customer_name')
+                print(f'Customer name has been updated to {get_customer_name}')
+
+            #customer address update with feedback if no change
+            if input_update_customer_address == '':
+                print('No change has been made to customer address.')
+            else:
+                chosen_update_order_property.update({
+                    'customer_address': input_update_customer_address
+                    })
+                get_customer_address = chosen_update_order_property.get('customer_address')
+                print(f'Customer address has been updated to {get_customer_address}')
+
+            if input_update_customer_phone == '':
+                print('No change has been made to customer phone number.')
+            else:
+                input_update_customer_phone = validate_phone_num(input_update_customer_phone)
+
+                chosen_update_order_property.update({
+                    'customer_phone': input_update_customer_phone
+                })
+                get_customer_phone = chosen_update_order_property.get('customer_phone')
+                print(f'Customer phone number has been updated to {get_customer_phone}.')
+
+            if input_update_customer_courier == '':
+                print('No change has been made to courier choice.')
+            else:
+                input_update_customer_courier = validate_int_input()
+                chosen_update_order_property.update({
+                    'courier': input_update_customer_courier
+                })
+                get_customer_courier = chosen_update_order_property.get('customer_phone')
+                print(f'Courier choice has been updated to {get_customer_courier}')
+
+            if input_update_customer_items == '':
+                print('No change has been made to ordered items.')
+            else:
+                input_update_customer_items = validate_int_input_order_items()
+                chosen_update_order_property.update({
+                    'items': input_update_customer_items
+                })
+                print(f'Notice: If enteries were left blank, no updates have been conducted.\n')
+                print(f'Here is the updated order:\n{chosen_update_order_property}')
+
+        elif input_orders_opt == '5':
+
+            orders_index_list()
+
+            input_delete_order_index = validate_int_input()
+
+            orders.pop(input_delete_order_index)
+
+            print('Order has been succeffuly deleted.')
+
+            continue
+
 
                 
 

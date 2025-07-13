@@ -21,6 +21,14 @@ orders_list = [{
 
 couriers = ['Uber', 'Deliveroo']
 
+def main_menu_opt():
+        print("\n__________________________\n")
+        print('Main Menu\n')
+        print('0 - Exit the App\n' \
+        '1 - Product Menu\n' \
+        '2 - Couriers Menu\n' \
+        '3 - Orders Menu\n')
+        print("__________________________\n")
 
 def products_menu_opt():
         print("__________________________\n")
@@ -116,7 +124,7 @@ if __name__ == "__main__":
         while True:
 
                 #main menu
-                app2.main_menu_opt()
+                main_menu_opt()
 
                 #user input main menu
                 main_menu_input = input()
@@ -299,9 +307,9 @@ if __name__ == "__main__":
                                 orders_index_list()
                 
                                 input_delete_order_index = input('Which order would you like to delete?\n')
-                
+
                                 orders_list.pop(int(input_delete_order_index))
-                                print(f'Order has been successfuly deleted. Remaining orders:\n {app2.orders_index_list()}')
+                                print(f'Order has been successfuly deleted.')
                 else:
                         print("Invalid input. Please enter a valid number.\n")
         
