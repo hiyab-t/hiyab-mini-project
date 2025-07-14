@@ -370,6 +370,7 @@ while True:
 
         # create new order
         elif input_orders_opt == 2:
+
             # get new customer name and validate input
             input_new_customer_name = input("Enter customer name:\n")
             input_new_customer_name = util.validate_str_input(input_new_customer_name)
@@ -396,21 +397,10 @@ while True:
             # get customer courier choice and validate input
             input_new_customer_courier = util.validate_int_input()
 
-            order_status = "Preparing"
-
-            order = {
-                "customer_name": input_new_customer_name,
-                "customer_address": input_new_customer_address,
-                "customer_phone": input_new_customer_phone,
-                "courier": input_new_customer_courier,
-                "status": order_status,
-                "items": input_new_customer_items,
-            }
-
-            orders.append(order)
+            new_order = util.add_new_order(input_new_customer_name, input_new_customer_address, input_new_customer_phone, input_new_customer_courier, input_new_customer_items, orders)
 
             print("New Order has  been successfully created!\n")
-            for order_key, order_value in order.items():
+            for order_key, order_value in new_order.items():
                 print(f"{order_key}: {order_value}")
 
             return_main_menu_after_pause()

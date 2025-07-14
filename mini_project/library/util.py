@@ -1,5 +1,21 @@
 import re
 
+def add_new_order(new_customer_name, new_customer_address, new_customer_phone, new_customer_courier, new_customer_items, orders_list):
+    order_status = "Preparing"
+
+    order = {
+        "customer_name": new_customer_name,
+        "customer_address": new_customer_address,
+        "customer_phone": new_customer_phone,
+        "courier": new_customer_courier,
+        "status": order_status,
+        "items": new_customer_items,
+    }
+    
+    orders_list.append(order)
+    
+    return order
+
 
 def validate_int_input():
     while True:
@@ -52,7 +68,7 @@ def validate_address_input(input_address, **kwargs):
             input_address = input()
 
 
-def validate_phone_num(input_phone, **kwargs):
+def validate_phone_num(input_phone):
     while True:
         input_phone = re.sub(r"\s+", "", input_phone)
         if input_phone.isdigit() and (len(input_phone) == 11 or len(input_phone) == 10):
