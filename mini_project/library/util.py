@@ -93,15 +93,16 @@ def validate_int_input_order_items(products):
         try:
             list_order_items = [
                 int(product)
-                for product in input(
-                    "Enter the number representation of the items you would like to place order(Please separate them by comma):\n"
-                ).split(",")
-            ]
+                for product in input().split(",")
+                ]
+            
             access_order_items_list = [
                 products[product_item_index]
                 for product_item_index in (list_order_items)
             ]
+            
             print(f"Ordered list of items: {list_order_items}\n")
+            
             for product_item in access_order_items_list:
                 print(f"{product_item['name']}\nPrice: {product_item['price']}\n")
             break
