@@ -204,12 +204,7 @@ while True:
 
             # create new product
 
-            create_product = {
-                "name": input_new_product_name,
-                "price": input_new_product_price,
-            }
-            products.append(create_product)
-            print("Product has been successfully added!")
+            util.add_new_product(input_new_product_name, input_new_product_price, products)
 
             return_main_menu_after_pause()
 
@@ -310,8 +305,6 @@ while True:
 
             if input_update_courier_name == "":
                 print("\nNo changes were made to the chosen courier's name.")
-                get_courier_name = chosen_update_courier.get("name")
-                print(f"Courier name remains {get_courier_name}.\n")
             else:
                 chosen_update_courier.update({"name": input_update_courier_name})
                 get_courier_name = chosen_update_courier.get("name")
@@ -324,8 +317,6 @@ while True:
 
             if input_update_courier_phone == "":
                 print("No changed were made to the chosen courier's phone number.")
-                get_courier_phone = chosen_update_courier.get("phone")
-                print(f"Courier phone number reamins {get_courier_phone}.\n")
             else:
                 input_update_courier_phone = util.validate_phone_num(
                     input_update_courier_phone

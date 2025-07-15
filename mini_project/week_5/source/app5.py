@@ -1,11 +1,11 @@
 from library import file_handler, displays, util
-
+import os
 
 products = [
     {"id": 0, "name": "Falafel burgers", "price": 3.65},
     {"id": 1, "name": "Reuben sandwich", "price": 4},
     {"id": 2, "name": "Chopped salad", "price": 3},
-    {"id": 3, "name": "Pasta House salad", "price": 5},
+    {"id": 3, "name": "Pasta House salad", "price": 5.40},
     {"id": 4, "name": "Hot Chocolate", "price": 2},
 ]
 
@@ -33,6 +33,14 @@ orders = [
     },
 ]
 
+#clear screen
+
+def clear_scroll():
+    if os.name == "nt":
+        os.system("clr")
+    else:
+        os.system("clear")
+
 #loading orders from orders.csv
 
 file_handler.read_orders_file(orders)
@@ -55,7 +63,18 @@ while True:
 
     elif input_main_menu == 1:
 
-        displays.
+        displays.products_menu_opt()
 
-    
+        input_product_opt = util.validate_int_input()
+
+        # return to main menu
+
+        if input_product_opt == 0:
+            continue
+
+        # products list
+
+        elif input_product_opt == 1:
+
+        #place holder import 
 

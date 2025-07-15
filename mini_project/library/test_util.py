@@ -1,9 +1,51 @@
 import util
 
+#test add new product will create a new product object
+
+def test_add_new_product_will_create_new_product_from_valid_data():
+
+    #arrange
+
+    expected_product = {
+        "name": 'Hot chocolate',
+        "price": 2.50,
+    }
+
+    #act
+
+    actual_product = util.add_new_product("Hot chocolate", 2.50, [])
+
+    #assert 
+
+    assert actual_product == expected_product, f'Expected product is {expected_product} but was {actual_product}.'
+
+#test add new product will create a new product object
+
+def test_add_new_product_will_create_new_product_object():
+
+    #arrange
+
+    products_list = []
+
+    expected_product = {
+        "name": 'Hot chocolate',
+        "price": 2.50,
+    }
+
+    #act
+
+    util.add_new_product("Hot chocolate", 2.50, products_list)
+
+    #assert
+
+    assert len(products_list) == 1, f'Expected 1 but got {len(products_list)}'
+
+    assert products_list[0] == expected_product, f'Expected {expected_product} but got {products_list[0]}'
 
 #test add new order will create a new order object
 
 def test_add_new_order_will_create_new_order_from_valid_data():
+    
     #arrange
 
     expected_order = {

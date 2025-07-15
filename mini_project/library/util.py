@@ -1,5 +1,15 @@
 import re
 
+def add_new_product(new_product_name, new_product_price, products_list):
+    product = {
+                "name": new_product_name,
+                "price": new_product_price,
+            }
+    products_list.append(product)
+    
+    return product
+
+print("Product has been successfully added!")
 def add_new_order(new_customer_name, new_customer_address, new_customer_phone, new_customer_courier, new_customer_items, orders_list):
     order_status = "Preparing"
 
@@ -47,7 +57,7 @@ def validate_float_input():
             return value
 
 
-def validate_str_input(input_str, **kwargs):
+def validate_str_input(input_str):
     input_str = input_str.strip()
     while True:
         if re.fullmatch(r"[a-zA-Z\s'-]+", input_str):
@@ -59,7 +69,7 @@ def validate_str_input(input_str, **kwargs):
             input_str = input()
 
 
-def validate_address_input(input_address, **kwargs):
+def validate_address_input(input_address):
     while True:
         if re.fullmatch(r"[a-zA-Z0-9,\s'-]+", input_address):
             return input_address.title().strip()
