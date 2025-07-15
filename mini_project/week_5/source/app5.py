@@ -1,4 +1,5 @@
 from library import file_handler, displays, util
+import my_db_ap 
 import os
 
 products = [
@@ -78,3 +79,25 @@ while True:
 
         #place holder import 
 
+            my_db_ap.retrieve_products()
+
+        elif input_product_opt == 2:
+
+            input_new_product_name = util.validate_str_input()
+
+            input_new_product_price = util.validate_float_input()
+
+            #insert product info
+            my_db_ap.insert_product(input_new_product_name, input_new_product_price)
+
+        elif input_product_opt == 3:
+
+            #retrieve and print all product with ID
+
+            my_db_ap.retrieve_products()
+
+            input_update_product_name = util.validate_str_input()
+
+            input_update_product_price = util.validate_float_input()
+
+            

@@ -5,29 +5,29 @@ from dotenv import load_dotenv
 load_dotenv(
 )
 host_name = os.environ.get("POSTGRES_HOST")
-database_name = os.environ.get("POSTGRES-DB")
+database_name = os.environ.get("POSTGRES_DB")
 user_name = os.environ.get("POSTGRES_USER")
 user_password = os.environ.get("POSTGRES_PASSWORD")
 
 def retrieve_products():    
     try:
 
-        with psycopg.connect(f'''host
-                host={host_name}'
+        with psycopg.connect(f"""
+                host={host_name}
                 dbname={database_name}
                 user={user_name}
-                password={user_password}''') as connection:
+                password={user_password}""") as connection:
 
             cursor = connection.cursor()
 
-            cursor.execute('SELECT name, prcie FROM products ORDER BY id ASC')
+            cursor.execute('SELECT * FROM products ORDER BY id ASC')
             
             rows = cursor.fetchall()
             
             print('Products list')
 
             for row in rows:
-                print(f'Name: {row[0]}, Price: {row[1]}')
+                print(f'ID: {row[0]}| Name: {row[1]}\n.      Price: {row[2]}')
 
                 cursor.close()
 
@@ -36,7 +36,7 @@ def retrieve_products():
 
 retrieve_products()
 
-def insert_product(input_new_product_name, input_new_product_price):
+def insert_product(new_product_name, new_product_price):
     try:
         with psycopg.connect(f'''host
                     host={host_name}'
@@ -52,7 +52,7 @@ def insert_product(input_new_product_name, input_new_product_price):
                     RETURNING product_id, name, price
                 """
 
-                data_values = (input_new_product_name, input_new_product_price)
+                data_values = (new_product_name, new_product_price)
 
                 cursor.execute(sql, data_values)
                 rows = cursor.fetchall()
@@ -65,6 +65,8 @@ def insert_product(input_new_product_name, input_new_product_price):
         
     except Exception as ex:
         print('Failed to:', ex)
+
+
 
 #def update_product():
 #    try:

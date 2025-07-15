@@ -135,11 +135,11 @@ def order_status_list_index():
 def return_main_menu_after_pause():
     while True:
         return_main_menu_after_pause = input('\nEnter "R" to return to main menu.\n')
-        break
-    if return_main_menu_after_pause.capitalize() == "r":
-        main_menu_opt()
-    else:
-        print('Invalid input. Please enter "R" to return to main menu.')
+        if return_main_menu_after_pause.capitalize() == "r":
+            main_menu_opt()
+            break
+        else:
+            print('Invalid input. Please enter "R" to return to main menu.')
 
 
 print("Welcome to Maria's Cafe!\n")
@@ -217,27 +217,39 @@ while True:
             chosen_update_product = products[input_update_product_index]
 
             input_updated_product_name = input("Enter updated product name:\n")
-            input_updated_product_name = util.validate_str_input(
-                input_updated_product_name
-            )
+            
             input_updated_product_price = input("Set the price:\n")
 
-            # update product name and feedback if no change
             if input_updated_product_name == "":
-                print("No changes were conducted to the product name.\n")
+                if input_updated_product_price == "":
+                    print('No changes were conducted to the product price.')
+                else:
+                    print("Enter the price again to confirm:\n")
+                    input_updated_product_price = util.validate_float_input()
+                    chosen_update_product.update({"price": input_updated_product_price})
+                print('No changes were conducted to the product name.')
             else:
                 chosen_update_product.update({"name": input_updated_product_name})
+                input_updated_product_name = util.validate_str_input(input_updated_product_name)
+            
+            print(f"Here is the updated product.\n {chosen_update_product}")
 
-            # update product price and feedback if no change
-            if input_updated_product_price == "":
-                result = None
-                print("No changes were been made to product price.\n ")
-                print(f"{chosen_update_product}")
-            else:
-                print("Enter the price again to confirm:\n")
-                result = util.validate_float_input()
-                chosen_update_product.update({"price": input_updated_product_price})
-                print(f"Here is the updated product.\n {chosen_update_product}")
+            ## update product name and feedback if no change
+            #if input_updated_product_name == "":
+            #    print("No changes were conducted to the product name.\n")
+            #else:
+            #    chosen_update_product.update({"name": input_updated_product_name})
+            #
+            ## update product price and feedback if no change
+            #if input_updated_product_price == "":
+            #    result = None
+            #    print("No changes were been made to product price.\n ")
+            #    print(f"{chosen_update_product}")
+            #else:
+            #    print("Enter the price again to confirm:\n")
+            #    result = util.validate_float_input()
+            #    chosen_update_product.update({"price": input_updated_product_price})
+            #    print(f"Here is the updated product.\n {chosen_update_product}")
 
             return_main_menu_after_pause()
 
@@ -288,6 +300,7 @@ while True:
             return_main_menu_after_pause()
 
         # update a courier
+        
         elif input_courier_opt == 3:
             couriers_index_list()
 
