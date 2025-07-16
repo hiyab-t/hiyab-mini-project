@@ -14,8 +14,19 @@ def read_products_file():
         with open(str(product_file_path), mode="r") as products_file:
             products_content = csv.DictReader(products_file)
 
-            for products_row in products_content:
-                print(products_row, end="\n")
+            print("\n__________________________\n")
+            print("\nProducts List\n")
+            for index, products_row in enumerate(products_content):
+                print(index, 
+                    '-',
+                    products_row['name'],
+                    '\n',
+                    'Price:',
+                    products_row['price'], 
+                    '\n',
+                    end="\n",
+                )
+
     except FileNotFoundError as whoops:
         print(f"{whoops}. Failed to open file.")
 
@@ -50,8 +61,30 @@ def read_orders_file():
 
             print("\n__________________________\n")
             print("\nOrders List\n")
-            for orders_row in orders_content:
-                print(orders_row, end="\n")
+            for index, orders_row in enumerate(orders_content):
+                print(
+                    index,
+                    '-',
+                    'Customer name: ',
+                    orders_row['customer_name'],
+                    '\n',
+                    '   Customer Address: ',
+                    orders_row['customer_address'],
+                    '\n',
+                    '   Customer phone: ',
+                    orders_row['customer_phone'],
+                    '\n',
+                    '   Courier: ',
+                    orders_row['courier'],
+                    '\n',
+                    '   Status: ',
+                    orders_row['status'],
+                    '\n',
+                    '   Items: ',
+                    orders_row['items'],
+                    '\n',
+                    end="\n",
+                )
 
     except FileNotFoundError as whoops:
         print(f"{whoops}. Failed to open file.")
