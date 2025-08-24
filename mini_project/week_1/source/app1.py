@@ -1,12 +1,8 @@
 # products name
 products = ["Hot chocolate", "Mocha", "Americano"]
 
-# orders_list
-orders_list = ["something"]
-
 
 # print main menu option
-# function main menu option(may be redundant. revise)
 def main_menu_options():
     print(
         "Main menu options\n"
@@ -39,24 +35,13 @@ elif user_input_menu == 1:
         "3 - Update an existing product.\n"
         "4 - Delete a product.\n"
     )
-elif user_input_menu == 2:
-    print(
-        "Orders menu\n"
-        "0 - Return to main menu.\n"
-        "1 - Orders list.\n"
-        "2 - Enter customer information and get order status\n"
-        "3 - Update order status\n"
-        "4 - Update existing order\n"
-        "5 - Delete order"
-    )
 
 # get user input for product options
 user_input_options = int(input())
 
 # list of product options
-# used function from above to print products with index
-# get user input index and product name to update and delete
 if user_input_options == 0:
+    # used function from above to print products with index
     print(main_menu_options())
 elif user_input_options == 1:
     print(products)
@@ -64,6 +49,7 @@ elif user_input_options == 2:
     print(products.append(input("What product would you like to add? ")))
 elif user_input_options == 3:
     print(product_index_list())
+    # get user input index to update product name
     user_input_index = int(
         input("Type in the number of the product you would like to update:")
     )
@@ -71,6 +57,7 @@ elif user_input_options == 3:
     products[user_input_index] = user_input_product_name.title()
 elif user_input_options == 4:
     print(product_index_list())
+    # get user input index to delete product
     user_input_index_pop = int(
         input("Please input the number of the product you want to delete: ")
     )
@@ -80,4 +67,4 @@ else:
         "Invalid input. Product lists will remain unchanged. Restart the app to reconfigure."
     )
 
-# orders menu
+

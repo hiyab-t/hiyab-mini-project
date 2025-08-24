@@ -1,5 +1,6 @@
 import os
-from library import util, file_handler
+from library import file_handler
+from mini_project.library.utils import util
 
 """ Welcome to Maria's cafe! This is a fully functional CLI based cafe application 
 to manage and configure customer, courier and order information, and settings. """

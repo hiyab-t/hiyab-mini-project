@@ -1,4 +1,4 @@
-import util
+from mini_project.library.utils import util 
 
 #test add new product will create a new product object
 
