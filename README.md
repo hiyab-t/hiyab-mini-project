@@ -19,31 +19,31 @@ User must be able to
 
 Progress made each week to build client's MVP (Minimum Viable Product) and finally, the end product in week 6.
 
-week_1
+<a href="https://github.com/hiyab-t/hiyab-mini-project/tree/91f6cc25cd68b275dd222d0358ea72c3c5f99b15/mini_project/week_1">week_1</a>
 
 - User is able to view, create, update and delete products.
 
-week_2 
+<a href="https://github.com/hiyab-t/hiyab-mini-project/tree/91f6cc25cd68b275dd222d0358ea72c3c5f99b15/mini_project/week_2">week_2</a>
 
 - User is able to view, create, update and delete products and orders.
 
-week_3
+<a href="https://github.com/hiyab-t/hiyab-mini-project/tree/91f6cc25cd68b275dd222d0358ea72c3c5f99b15/mini_project/week_3">week_3</a>
 
 - User is able to view, create, update and delete products, orders, and couriers.
 - User data entries are persisted to a .txt file format.
 
-week_4
+<a href="https://github.com/hiyab-t/hiyab-mini-project/tree/91f6cc25cd68b275dd222d0358ea72c3c5f99b15/mini_project/week_4">week_4</a>
 
 - User is able to view, create, update and delete products, orders and couriers dictionary.
 - User data entries are persisted to a .csv file format.
 
-week_5
+<a href="https://github.com/hiyab-t/hiyab-mini-project/tree/91f6cc25cd68b275dd222d0358ea72c3c5f99b15/mini_project/week_5">week_5</a>
 
 - User is able to view, create, update and delete products, orders and couriers dictionary. 
 - User data entries for products and couriers are persisted to database.
 - User data entries for orders is persisted to .csv format.
 
-week_6
+<a href="https://github.com/hiyab-t/hiyab-mini-project/tree/91f6cc25cd68b275dd222d0358ea72c3c5f99b15/mini_project/week_6">week_6</a>
 
 - User is able to view, create, update and delete products, orders and couriers dictionary.
 - User data entries for products, orders and couriers are persisted to database.
