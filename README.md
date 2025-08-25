@@ -54,7 +54,7 @@ Progress made each week to build client's MVP (Minimum Viable Product) and final
 1. **Clone the Repository**
 ```bash
    git clone https://github.com/hiyab-t/hiyab-mini-project.git
-   cd hiyab-mini-project
+   cd mini_project
 ```
 
 2. **Set Up a Virtual Environment**
