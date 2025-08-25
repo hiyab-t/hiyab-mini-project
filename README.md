@@ -45,8 +45,8 @@ Progress made each week to build client's MVP (Minimum Viable Product) and final
 
 <a href="https://github.com/hiyab-t/hiyab-mini-project/tree/91f6cc25cd68b275dd222d0358ea72c3c5f99b15/mini_project/week_6">week_6</a>
 
-- User is able to view, create, update and delete products, orders and couriers dictionary.
-- User data entries for products, orders and couriers are persisted to database.
+- User is able to view, create, update and delete products, orders, couriers, customer table.
+- User data entries for products, orders, couriers and customers are persisted to database.
 
 
 # How to Run the App
