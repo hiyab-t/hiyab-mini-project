@@ -1,4 +1,4 @@
-# Hiyab's Cafe App 
+## Hiyab's Cafe App 
 
 <img width="1536" height="1024" alt="hiyab" src="https://github.com/user-attachments/assets/1333c042-61fb-4188-95ff-fb774a029eff" />
 
@@ -93,7 +93,7 @@ Note: you will need to download and open docker desktop.
 
 # Reflections
 
-# How did your design meet the project’s requirements?
+**How did your design meet the project’s requirements?**
 
 - Followed a modular approach, organizing code according to functionality.
 
@@ -103,7 +103,7 @@ Note: you will need to download and open docker desktop.
 
 - Implemented menus and user interactions clearly so that the CLI app met all client requirements.
 
-# How did you guarantee the project’s requirements?
+**How did you guarantee the project’s requirements?**
 
 - Adopted an agile workflow with weekly sprints.
 
@@ -113,7 +113,7 @@ Note: you will need to download and open docker desktop.
 
 - Logged progress and followed best coding practices to keep development on track.
 
-# If you had more time, what would you improve?
+**If you had more time, what would you improve?**
 
 - Improve the UI with clearer prompts.
 
@@ -125,7 +125,7 @@ Note: you will need to download and open docker desktop.
 
 - Add more order features, such as the ability to record customer allergies.
 
-# What did you most enjoy implementing?
+**What did you most enjoy implementing?**
 
 - PostgreSQL integration with Python was particularly rewarding — seeing data persist across runs and interacting through Adminer felt like a big achievement after the initial setup effort.
 
