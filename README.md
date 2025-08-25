@@ -93,6 +93,45 @@ Note: you will need to download and open docker desktop.
 
 # Reflections
 
+# How did your design meet the project’s requirements?
+
+- Followed a modular approach, organizing code according to functionality.
+
+- Ensured code readability by using self-explanatory variable names, adding comments, and refactoring to reduce complexity.
+
+- Reformatted code using Black and Ruff to follow PEP8 guidelines.
+
+- Implemented menus and user interactions clearly so that the CLI app met all client requirements.
+
+# How did you guarantee the project’s requirements?
+
+- Adopted an agile workflow with weekly sprints.
+
+- Each week, a new layer of functionality was added. Starting with basic menu options, then products, orders, couriers, and finally data persistence.
+
+- Functionality was constantly reviewed and demoed weekly to ensure the app always worked as intended.
+
+- Logged progress and followed best coding practices to keep development on track.
+
+# If you had more time, what would you improve?
+
+- Improve the UI with clearer prompts.
+
+- Extend the app beyond the command line by implementing a Flask-based API.
+
+- Build a simple static website as a front-end.
+
+- Write more unit tests, particularly for edge cases.
+
+- Add more order features, such as the ability to record customer allergies.
+
+# What did you most enjoy implementing?
+
+- PostgreSQL integration with Python was particularly rewarding — seeing data persist across runs and interacting through Adminer felt like a big achievement after the initial setup effort.
+
+- Problem-solving was both challenging and fun. Many bugs came down to simple mistakes. Sometimes, you expect something big to be missing, but all it takes was to go down the roots of foundational programming and understanding error documentation.
+
+- I enjoyed learning and applying new concepts like list comprehensions, classes, and unit tests, as well as experimenting with different ways of solving the same problem.
 
 
 
