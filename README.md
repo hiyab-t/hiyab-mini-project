@@ -58,16 +58,16 @@ Progress made each week to build client's MVP (Minimum Viable Product) and final
 ```
 
 2. **Set Up a Virtual Environment**
-
+```bash
 python3 -m venv .venv       # On macOS/Linux
 py -m venv .venv            # On Windows
 source .venv/bin/activate   # On macOS/Linux
 .venv\Scripts\activate      # On Windows
-
+```
 3. **Install Dependencies**
-
+```bash
 pip install -r requrements.txt
-
+```
 4. **Start Postgres with Docker**
 ```bash
     docker compose up -d
