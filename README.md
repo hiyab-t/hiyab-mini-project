@@ -4,7 +4,7 @@
 
 # Project Background 
 
-This projects is done as part of my assignment as a Generation Data engineer trainee. It is a fully fuctioning command-line interface (CLI) application for a fictious pop up cafe built using python. User data entries are persisted, and error handling was implemented to prevent data loss and ensure user input is validated, thereby, improivng user experience.
+This projects is done as part of my assignment as a Generation Data engineer trainee. It is a fully fuctioning command-line interface (CLI) application for a fictitious pop up cafe built using python. User data entries are persisted, and error handling was implemented to prevent data loss and ensure user input is validated, thereby, improivng user experience.
 
 # Client Requirement
 
